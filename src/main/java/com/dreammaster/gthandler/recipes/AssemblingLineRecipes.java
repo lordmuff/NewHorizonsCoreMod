@@ -1,9 +1,19 @@
 package com.dreammaster.gthandler.recipes;
 
+import static com.dreammaster.scripts.IScriptLoader.missing;
 import static gregtech.api.enums.Mods.AE2FluidCraft;
 import static gregtech.api.enums.Mods.AppliedEnergistics2;
+import static gregtech.api.enums.Mods.AvaritiaAddons;
+import static gregtech.api.enums.Mods.Botania;
+import static gregtech.api.enums.Mods.GTPlusPlus;
+import static gregtech.api.enums.Mods.GalaxySpace;
+import static gregtech.api.enums.Mods.GoodGenerator;
 import static gregtech.api.enums.Mods.GraviSuite;
+import static gregtech.api.enums.Mods.GregTech;
+import static gregtech.api.enums.Mods.SGCraft;
+import static gregtech.api.enums.Mods.SuperSolarPanels;
 import static gregtech.api.enums.Mods.TecTech;
+import static gregtech.api.util.GT_ModHandler.getModItem;
 import static gregtech.api.util.GT_RecipeBuilder.HOURS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.MINUTES;
@@ -24,10 +34,14 @@ import com.github.technus.tectech.recipe.TT_recipeAdder;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsBotania;
+import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.enums.TierEU;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
+import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
+import vazkii.botania.api.BotaniaAPI;
 
 public class AssemblingLineRecipes implements Runnable {
 
@@ -151,6 +165,525 @@ public class AssemblingLineRecipes implements Runnable {
                 .addTo(AssemblyLine);
 
         if (TecTech.isModLoaded()) {
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    ItemList.Electric_Motor_UXV.get(1L),
+                    2_000_000_000,
+                    2_000_000,
+                    (int) TierEU.RECIPE_MAX,
+                    1_024_000,
+                    new Object[] { GT_OreDictUnificator.get(OrePrefixes.stickLong, MaterialsBotania.GaiaSpirit, 18L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsBotania.Terrasteel, 19L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireFine, MaterialsUEVplus.MagMatter, 61L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireFine, MaterialsUEVplus.MagMatter, 63L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireFine, MaterialsUEVplus.MagMatter, 62L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireFine, MaterialsUEVplus.MagMatter, 59L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUMV, 18L),
+                            CustomItemList.PikoCircuit.get(15L),
+                            GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.Universium, 14L) },
+
+                    new FluidStack[] { Materials.Lubricant.getFluid(2880000L),
+                            MaterialsBotania.GaiaSpirit.getMolten(2880L),
+                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(2880L),
+                            MaterialsUEVplus.MagMatter.getMolten(5760L),
+
+                    },
+                    ItemList.Electric_Motor_MAX.get(1L),
+                    3 * HOURS + 2 * MINUTES + 5 * SECONDS,
+                    (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    ItemList.Electric_Piston_UXV.get(1L),
+                    2_000_000_000,
+                    2_000_000,
+                    (int) TierEU.RECIPE_MAX,
+                    1_024_000,
+                    new Object[] { ItemList.Electric_Motor_MAX.get(2L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsBotania.Terrasteel, 7L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsUEVplus.MagMatter, 9L),
+                            GT_OreDictUnificator.get(OrePrefixes.stick, MaterialsUEVplus.BlackDwarfMatter, 34L),
+                            GT_OreDictUnificator.get(OrePrefixes.ring, MaterialsBotania.GaiaSpirit, 62L),
+                            GT_OreDictUnificator.get(OrePrefixes.round, MaterialsUEVplus.MagMatter, 61L),
+                            GT_OreDictUnificator.get(OrePrefixes.round, MaterialsBotania.Terrasteel, 59L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUMV, 47),
+                            CustomItemList.QuantumCircuit.get(16L),
+                            GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.Universium, 32) },
+
+                    new FluidStack[] { Materials.Lubricant.getFluid(2880000L),
+                            MaterialsBotania.GaiaSpirit.getMolten(2880L),
+                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(2880L),
+                            MaterialsUEVplus.MagMatter.getMolten(5760L),
+
+                    },
+                    ItemList.Electric_Piston_MAX.get(1L),
+                    3 * HOURS + 2 * MINUTES + 5 * SECONDS,
+                    (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder
+                    .addResearchableAssemblylineRecipe(
+                            ItemList.Electric_Pump_UXV.get(1L),
+                            2_000_000_000,
+                            2_000_000,
+                            (int) TierEU.RECIPE_MAX,
+                            1_024_000,
+                            new Object[] { ItemList.Electric_Motor_MAX.get(3L),
+                                    GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsBotania.Terrasteel, 11L),
+                                    GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsUEVplus.MagMatter, 9L),
+                                    GT_OreDictUnificator.get(OrePrefixes.pipeHuge, MaterialsUEVplus.SpaceTime, 45L),
+                                    GT_OreDictUnificator.get(OrePrefixes.rotor, MaterialsBotania.GaiaSpirit, 62L),
+                                    GT_OreDictUnificator.get(
+                                            OrePrefixes.ring,
+                                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                            22L),
+                                    GT_OreDictUnificator.get(OrePrefixes.round, MaterialsUEVplus.MagMatter, 64L),
+                                    GT_OreDictUnificator.get(
+                                            OrePrefixes.round,
+                                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                            57L),
+                                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUMV, 37L),
+                                    CustomItemList.QuantumCircuit.get(14L),
+                                    GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.Universium, 45L) },
+
+                            new FluidStack[] { Materials.Lubricant.getFluid(2880000L),
+                                    MaterialsBotania.GaiaSpirit.getMolten(2880L),
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(2880L),
+                                    MaterialsUEVplus.MagMatter.getMolten(5760L),
+
+                            },
+                            ItemList.Electric_Pump_MAX.get(1L),
+                            3 * HOURS + 2 * MINUTES + 5 * SECONDS,
+                            (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    ItemList.Conveyor_Module_UXV.get(1L),
+                    2_000_000_000,
+                    2_000_000,
+                    (int) TierEU.RECIPE_MAX,
+                    1_024_000,
+                    new Object[] { ItemList.Electric_Motor_MAX.get(8L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsBotania.Terrasteel, 6L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsUEVplus.MagMatter, 9L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, Materials.StyreneButadieneRubber, 64L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, Materials.StyreneButadieneRubber, 64L),
+                            GT_OreDictUnificator.get(OrePrefixes.ring, MaterialsUEVplus.BlackDwarfMatter, 64L),
+                            GT_OreDictUnificator.get(OrePrefixes.round, MaterialsUEVplus.MagMatter, 64L),
+                            GT_OreDictUnificator.get(
+                                    OrePrefixes.round,
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                    64L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUMV, 32L),
+                            CustomItemList.QuantumCircuit.get(16L),
+                            GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.Universium, 64L) },
+
+                    new FluidStack[] { Materials.Rubber.getFluid(2_000_000_000),
+                            MaterialsBotania.GaiaSpirit.getMolten(2880L),
+                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(2880L),
+                            MaterialsUEVplus.MagMatter.getMolten(5760L),
+
+                    },
+                    ItemList.Conveyor_Module_MAX.get(1L),
+                    3 * HOURS + 2 * MINUTES + 5 * SECONDS,
+                    (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    ItemList.Robot_Arm_UXV.get(1L),
+                    2_000_000_000,
+                    2_000_000,
+                    (int) TierEU.RECIPE_MAX,
+                    1_024_000,
+                    new Object[] { ItemList.Electric_Motor_MAX.get(5L), ItemList.Electric_Piston_MAX.get(3L),
+                            ItemList.Conveyor_Module_UXV.get(10L), CustomItemList.QuantumCircuit.get(63L),
+                            CustomItemList.PikoCircuit.get(62L), CustomItemList.QuantumCircuit.get(61L),
+                            new Object[] { OrePrefixes.circuit.get(Materials.Master), 60L },
+                            GT_OreDictUnificator.get(OrePrefixes.gear, Materials.Alumite, 31L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUMV, 37L),
+                            GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.Universium, 31L)
+
+                    },
+
+                    new FluidStack[] { Materials.Lubricant.getFluid(2134567L),
+                            MaterialsBotania.GaiaSpirit.getMolten(12345L),
+                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(100_000L),
+                            MaterialsUEVplus.MagMatter.getMolten(5432L),
+
+                    },
+                    ItemList.Robot_Arm_MAX.get(1L),
+                    3 * HOURS + 2 * MINUTES + 5 * SECONDS,
+                    (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    ItemList.Emitter_UXV.get(1L),
+                    2_000_000_000,
+                    2_000_000,
+                    (int) TierEU.RECIPE_MAX,
+                    1_024_000,
+                    new Object[] { ItemList.Electric_Motor_MAX.get(3L), CustomItemList.QuantumCircuit.get(64L),
+                            new Object[] { OrePrefixes.circuit.get(Materials.Master), 31L },
+                            GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Alumite, 31L),
+                            GT_OreDictUnificator.get(OrePrefixes.foil, MaterialsBotania.Terrasteel, 31L),
+                            GT_OreDictUnificator.get(OrePrefixes.foil, MaterialsUEVplus.WhiteDwarfMatter, 46L),
+                            GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Praseodymium, 42L),
+                            GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Silver, 47L),
+                            GT_OreDictUnificator.get(OrePrefixes.foil, Materials.SamariumMagnetic, 22L),
+                            GT_OreDictUnificator.get(OrePrefixes.foil, MaterialsUEVplus.MagMatter, 4L),
+                            GT_OreDictUnificator.get(
+                                    OrePrefixes.foil,
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                    37L),
+                            GT_OreDictUnificator.get(OrePrefixes.foil, MaterialsBotania.GaiaSpirit, 17L),
+                            GT_OreDictUnificator.get(OrePrefixes.foil, MaterialsBotania.ElvenElementium, 64L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorUV, 55L),
+                            GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.Universium, 22L)
+
+                    },
+
+                    new FluidStack[] { Materials.Benzene.getFluid(2586756L),
+                            MaterialsBotania.GaiaSpirit.getMolten(8675L),
+                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(68574),
+                            MaterialsUEVplus.MagMatter.getMolten(6757),
+
+                    },
+                    ItemList.Emitter_MAX.get(1L),
+                    6 * HOURS + 3 * MINUTES + 5 * SECONDS,
+                    (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    ItemList.Sensor_UXV.get(1L),
+                    2_000_000_000,
+                    2_000_000,
+                    (int) TierEU.RECIPE_MAX,
+                    1_024_000,
+                    new Object[] { ItemList.Electric_Motor_MAX.get(6L), CustomItemList.QuantumCircuit.get(1L),
+                            new Object[] { OrePrefixes.circuit.get(Materials.Ultimate), 1L },
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Alumite, 31L),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, MaterialsBotania.Terrasteel, 31L),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, MaterialsUEVplus.WhiteDwarfMatter, 46L),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Praseodymium, 42L),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Silver, 47L),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SamariumMagnetic, 22L),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, MaterialsUEVplus.MagMatter, 4L),
+                            GT_OreDictUnificator.get(
+                                    OrePrefixes.frameGt,
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                    37L),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, MaterialsBotania.GaiaSpirit, 17L),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, MaterialsBotania.ElvenElementium, 64L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorEV, 55L),
+                            GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.Universium, 22L)
+
+                    },
+
+                    new FluidStack[] { Materials.AceticAcid.getFluid(2586756L),
+                            MaterialsBotania.GaiaSpirit.getMolten(8675L),
+                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(68574),
+                            MaterialsUEVplus.MagMatter.getMolten(6757),
+
+                    },
+                    ItemList.Sensor_MAX.get(1L),
+                    6 * HOURS + 3 * MINUTES + 5 * SECONDS,
+                    (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    ItemList.Field_Generator_UXV.get(1L),
+                    2_000_000_000,
+                    2_000_000,
+                    (int) TierEU.RECIPE_MAX,
+                    1_024_000,
+                    new Object[] { ItemList.Field_Generator_LV.get(32L), ItemList.Field_Generator_MV.get(25L),
+                            ItemList.Field_Generator_HV.get(63L), ItemList.Field_Generator_EV.get(22L),
+                            ItemList.Field_Generator_IV.get(31L), ItemList.Field_Generator_LuV.get(8L),
+                            ItemList.Field_Generator_ZPM.get(12L), ItemList.Field_Generator_UV.get(8L),
+                            ItemList.Field_Generator_UHV.get(4L), ItemList.Field_Generator_UEV.get(2L),
+                            ItemList.Field_Generator_UIV.get(1L), ItemList.Field_Generator_UMV.get(11L),
+                            ItemList.Field_Generator_UXV.get(22L)
+
+                    },
+
+                    new FluidStack[] { Materials.Infinity.getMolten(500_000_000), Materials.BioDiesel.getFluid(9793),
+                            Materials.Grade1PurifiedWater.getFluid(1857476),
+                            MaterialsUEVplus.MagMatter.getMolten(12222),
+
+                    },
+                    ItemList.Field_Generator_MAX.get(1L),
+                    MINUTES * HOURS,
+                    (int) TierEU.RECIPE_LV);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    CustomItemList.HighEnergyFlowCircuit.get(1L),
+                    1_000_000,
+                    64,
+                    (int) TierEU.RECIPE_LuV,
+                    32,
+                    new Object[] { ItemList.Transformer_LV_ULV.get(1L), ItemList.Transformer_MV_LV.get(2L),
+                            ItemList.Transformer_HV_MV.get(3L), ItemList.Transformer_EV_HV.get(4L),
+                            ItemList.Transformer_IV_EV.get(5L), ItemList.Transformer_LuV_IV.get(6L),
+                            ItemList.Transformer_ZPM_LuV.get(7L), ItemList.Transformer_UV_ZPM.get(1L),
+                            ItemList.Transformer_MAX_UV.get(1L), CustomItemList.HighEnergyFlowCircuit.get(5L),
+                            GT_OreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorZPM, 64L) },
+
+                    new FluidStack[] { Materials.Lubricant.getFluid(2000), Materials.Cobalt.getMolten(144 * 20) },
+                    com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1L),
+                    10 * MINUTES,
+                    (int) TierEU.RECIPE_ZPM);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel7_UXV.get(1L),
+                    500_000_000,
+                    32000,
+                    (int) TierEU.RECIPE_UXV,
+                    512,
+                    new Object[] { com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel7_UXV.get(1L),
+                            CustomItemList.QuantumCircuit.get(64), ItemList.Electric_Pump_MAX.get(4L),
+                            ItemList.Robot_Arm_MAX.get(4L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsUEVplus.MagMatter, 8L),
+                            GT_OreDictUnificator.get(
+                                    OrePrefixes.plateDense,
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                    32L),
+                            com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(64),
+                            ItemList.EnergisedTesseract.get(64L)
+
+                    },
+                    new FluidStack[] { MaterialsUEVplus.ExcitedDTEC.getFluid(2_000_000L),
+                            MaterialsBotania.GaiaSpirit.getMolten(144 * 20L),
+                            MaterialsBotania.Manasteel.getMolten(144 * 64L) },
+                    ItemList.Wireless_Hatch_Energy_MAX.get(1L),
+                    10 * MINUTES,
+                    (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    ItemList.Wireless_Hatch_Energy_MAX.get(1L),
+                    1_000_000_000,
+                    32000,
+                    (int) TierEU.RECIPE_UXV,
+                    1024,
+                    new Object[] { ItemList.Wireless_Hatch_Energy_MAX.get(1L), CustomItemList.QuantumCircuit.get(64),
+                            CustomItemList.QuantumCircuit.get(64), ItemList.Electric_Pump_MAX.get(16L),
+                            ItemList.Robot_Arm_MAX.get(16L),
+                            GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsUEVplus.MagMatter, 64L),
+                            GT_OreDictUnificator.get(
+                                    OrePrefixes.plateDense,
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                    64L),
+                            GT_OreDictUnificator.get(
+                                    OrePrefixes.plateDense,
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                    64L),
+                            com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(64),
+                            com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(64),
+                            ItemList.EnergisedTesseract.get(64L), ItemList.EnergisedTesseract.get(64L),
+
+                    },
+                    new FluidStack[] { MaterialsUEVplus.ExcitedDTEC.getFluid(2_000_000L * 8),
+                            MaterialsBotania.GaiaSpirit.getMolten(144 * 20L * 4),
+                            MaterialsBotania.Manasteel.getMolten(144 * 64L * 4) },
+                    com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_MAX.get(1L),
+                    20 * MINUTES,
+                    (int) TierEU.RECIPE_MAX);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    com.github.technus.tectech.thing.CustomItemList.SpacetimeCompressionFieldGeneratorTier8.get(1),
+                    10 * 48_000_000,
+                    10 * 16_384,
+                    (int) TierEU.RECIPE_MAX,
+                    10 * 8,
+                    new Object[] { com.github.technus.tectech.thing.CustomItemList.EOH_Reinforced_Spatial_Casing.get(1),
+                            // T10 Yotta cell.
+                            GT_ModHandler.getModItem(GoodGenerator.ID, "yottaFluidTankCells", 1, 9),
+                            // quantum tank V (max tier)
+                            ItemList.Quantum_Tank_IV.get(4 * 10),
+                            // Inf chest
+                            GT_ModHandler.getModItem(AvaritiaAddons.ID, "InfinityChest", 10),
+                            // Spacetime continuum ripper
+                            GT_ModHandler.getModItem(GTPlusPlus.ID, "gtplusplus.blockcasings.5", 4, 10),
+                            GT_ModHandler.getModItem("appliedenergistics2", "tile.BlockSingularityCraftingStorage", 1),
+                            GT_ModHandler
+                                    .getModItem("appliedenergistics2", "item.ItemExtremeStorageCell.Singularity", 1),
+                            GT_ModHandler
+                                    .getModItem("appliedenergistics2", "item.ItemExtremeStorageCell.Singularity", 1),
+                            GT_ModHandler
+                                    .getModItem("appliedenergistics2", "item.ItemExtremeStorageCell.Singularity", 1),
+                            GT_ModHandler
+                                    .getModItem("appliedenergistics2", "item.ItemExtremeStorageCell.Singularity", 1),
+                            GT_ModHandler
+                                    .getModItem("appliedenergistics2", "item.ItemExtremeStorageCell.Singularity", 1),
+                            GT_ModHandler
+                                    .getModItem("appliedenergistics2", "item.ItemExtremeStorageCell.Singularity", 1),
+                            GT_ModHandler
+                                    .getModItem("appliedenergistics2", "item.ItemExtremeStorageCell.Singularity", 1),
+                            GT_OreDictUnificator.get(OrePrefixes.bolt, MaterialsUEVplus.MagMatter, 2),
+                            GT_OreDictUnificator.get(
+                                    OrePrefixes.bolt,
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                    32),
+                            com.github.technus.tectech.loader.recipe.BaseRecipeLoader.getItemContainer("QuantumCircuit")
+                                    .get(3) },
+                    new FluidStack[] {
+                            new FluidStack(
+                                    FluidRegistry.getFluid("molten.mutatedlivingsolder"),
+                                    (int) (2_880 * Math.pow(2L, 9))),
+                            MaterialsUEVplus.Space.getMolten(1_440 * 10), MaterialsUEVplus.SpaceTime.getMolten(1_440),
+                            MaterialsBotania.Terrasteel.getMolten(144 * 4096) },
+                    CustomItemList.SpacetimeCompressionFieldGeneratorTier10.get(1),
+                    10 * 4_000 * 20,
+                    (int) TierEU.RECIPE_UXV);
+
+            TT_recipeAdder
+                    .addResearchableAssemblylineRecipe(
+                            com.github.technus.tectech.thing.CustomItemList.TimeAccelerationFieldGeneratorTier8.get(1),
+                            10 * 48_000_000,
+                            10 * 16_384,
+                            (int) TierEU.RECIPE_MAX,
+                            10 * 8,
+                            new Object[] {
+                                    com.github.technus.tectech.thing.CustomItemList.EOH_Reinforced_Temporal_Casing
+                                            .get(1),
+                                    GregtechItemList.FusionComputer_UV3.get(1),
+                                    GT_ModHandler.getModItem(GoodGenerator.ID, "compactFusionCoil", 1, 4),
+                                    // UV Solar panel
+                                    GT_ModHandler.getModItem(SuperSolarPanels.ID, "PhotonicSolarPanel", 10, 0),
+                                    com.github.technus.tectech.loader.recipe.BaseRecipeLoader
+                                            .getItemContainer("QuantumCircuit").get(10),
+                                    // Red Spectral Component
+                                    GT_ModHandler.getModItem(SuperSolarPanels.ID, "redcomponent", 64),
+                                    // Green Spectral Component
+                                    GT_ModHandler.getModItem(SuperSolarPanels.ID, "greencomponent", 64),
+                                    // Blue Spectral Component
+                                    GT_ModHandler.getModItem(SuperSolarPanels.ID, "bluecomponent", 64),
+
+                                    GT_OreDictUnificator.get(OrePrefixes.bolt, MaterialsUEVplus.MagMatter, 2),
+                                    GT_OreDictUnificator.get(
+                                            OrePrefixes.bolt,
+                                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                            32),
+                                    // Dyson Swarm Module Deployment Unit Base Casing
+                                    GT_ModHandler.getModItem(GalaxySpace.ID, "dysonswarmparts", 10 * 4, 2),
+                                    // Dyson Swarm Energy Receiver Dish Block
+                                    GT_ModHandler.getModItem(GalaxySpace.ID, "dysonswarmparts", 10 * 4, 1),
+                                    // Ultimate Time Anomaly.
+                                    GT_ModHandler.getModItem(GregTech.ID, "gt.blockmachines", 10 * 4, 11107),
+
+                                    ItemList.Energy_Module.get(10),
+                                    GT_OreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorUMV, 10 * 4),
+
+                            },
+                            new FluidStack[] {
+                                    new FluidStack(
+                                            FluidRegistry.getFluid("molten.mutatedlivingsolder"),
+                                            (int) (2_880 * Math.pow(2L, 9))),
+                                    MaterialsUEVplus.Time.getMolten(1_440 * 10),
+                                    MaterialsUEVplus.SpaceTime.getMolten(1_440),
+                                    MaterialsBotania.Terrasteel.getMolten(144 * 4096) },
+                            CustomItemList.TimeAccelerationFieldGeneratorTier10.get(1),
+                            10 * 4_000 * 20,
+                            (int) TierEU.RECIPE_UXV);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    com.github.technus.tectech.thing.CustomItemList.StabilisationFieldGeneratorTier8.get(1),
+                    10 * 48_000_000,
+                    10 * 16_384,
+                    (int) TierEU.RECIPE_MAX,
+                    10 * 8,
+                    new Object[] {
+                            com.github.technus.tectech.thing.CustomItemList.TimeAccelerationFieldGeneratorTier8.get(1),
+                            com.github.technus.tectech.thing.CustomItemList.SpacetimeCompressionFieldGeneratorTier8
+                                    .get(1),
+                            com.github.technus.tectech.thing.CustomItemList.EOH_Infinite_Energy_Casing.get(1),
+                            // Dyson Swarm Module.
+                            GT_ModHandler.getModItem(GalaxySpace.ID, "item.DysonSwarmParts", 4 * 10, 0),
+
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SuperconductorUMVBase, 4 * 10),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SuperconductorUIVBase, 4 * 10),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SuperconductorUEVBase, 4 * 10),
+                            GT_OreDictUnificator
+                                    .get(OrePrefixes.frameGt, Materials.Longasssuperconductornameforuhvwire, 4 * 10),
+
+                            // Gravitation Engine
+                            GT_ModHandler.getModItem(GraviSuite.ID, "itemSimpleItem", 64, 3),
+                            GT_ModHandler.getModItem(GraviSuite.ID, "itemSimpleItem", 64, 3),
+                            GT_ModHandler.getModItem(GraviSuite.ID, "itemSimpleItem", 64, 3),
+                            GT_ModHandler.getModItem(GraviSuite.ID, "itemSimpleItem", 64, 3),
+
+                            GT_OreDictUnificator.get(
+                                    OrePrefixes.bolt,
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                    32),
+                            com.github.technus.tectech.loader.recipe.BaseRecipeLoader.getItemContainer("QuantumCircuit")
+                                    .get(2 * 10),
+                            GT_OreDictUnificator.get(OrePrefixes.gearGt, MaterialsUEVplus.SpaceTime, 10),
+                            GT_OreDictUnificator.get(OrePrefixes.gearGtSmall, MaterialsUEVplus.MagMatter, 1)
+
+                    },
+                    new FluidStack[] {
+                            new FluidStack(
+                                    FluidRegistry.getFluid("molten.mutatedlivingsolder"),
+                                    (int) (2_880 * Math.pow(2L, 9))),
+                            MaterialsUEVplus.Time.getMolten(1_440 * 10), MaterialsUEVplus.Space.getMolten(1_440 * 10),
+                            MaterialsUEVplus.SpaceTime.getMolten(1_440) },
+                    CustomItemList.StabilisationFieldGeneratorTier10.get(1),
+                    10 * 4_000 * 20,
+                    (int) TierEU.RECIPE_UXV);
+
+            BotaniaAPI.registerElvenTradeRecipe(
+                    CustomItemList.Mega_EoH.get(2),
+                    com.github.technus.tectech.thing.CustomItemList.Machine_Multi_EyeOfHarmony.get(29));
+
+            TT_recipeAdder
+                    .addResearchableAssemblylineRecipe(
+                            ItemList.Casing_Coil_AwakenedDraconium.get(1L),
+                            2_000_000_000,
+                            2_000_000,
+                            (int) TierEU.RECIPE_MAX,
+                            1_024_000,
+                            new Object[] { GT_ModHandler.getModItem(GregTech.ID, "gt.blockmachines", 32, 963),
+                                    GT_ModHandler.getModItem(GregTech.ID, "gt.blockmachines", 32, 963),
+                                    GT_ModHandler.getModItem(GregTech.ID, "gt.blockmachines", 32, 963),
+                                    GT_ModHandler.getModItem(GregTech.ID, "gt.blockmachines", 12, 963),
+                                    ItemList.Robot_Arm_UXV.get(64), ItemList.Emitter_UXV.get(64),
+                                    GT_OreDictUnificator.get(
+                                            OrePrefixes.plateDense,
+                                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
+                                            64L),
+                                    GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.Universium, 64L),
+                                    CustomItemList.AcceleratorUV.get(64L), ItemList.EnergisedTesseract.get(64L),
+                                    ItemList.ZPM6.get(2L) },
+
+                            new FluidStack[] { Materials.Infinity.getMolten(2_000_000_000L),
+                                    MaterialsBotania.GaiaSpirit.getMolten(10_000L),
+                                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(
+                                            10_000_000L),
+                                    MaterialsUEVplus.SpaceTime.getMolten(1_000_000_000), },
+                            CustomItemList.GregtechMetaTileEntity_Mega_Adv_EBF.get(1L),
+                            24 * HOURS,
+                            (int) TierEU.RECIPE_UXV);
+
+            TT_recipeAdder.addResearchableAssemblylineRecipe(
+                    getModItem(SGCraft.ID, "stargateBase", 1, 0, missing),
+                    2_000_000_000,
+                    2_000_000,
+                    (int) TierEU.RECIPE_MAX,
+                    1_024_000,
+                    new Object[] { getModItem(SGCraft.ID, "stargateBase", 16, 0, missing),
+                            getModItem(SGCraft.ID, "stargateRing", 64, 0, missing),
+                            getModItem(SGCraft.ID, "stargateRing", 64, 0, missing),
+                            getModItem(SGCraft.ID, "stargateRing", 64, 1, missing),
+                            getModItem(SGCraft.ID, "stargateRing", 64, 1, missing),
+                            getModItem(SGCraft.ID, "sgIrisBlade", 32, 0, missing), CustomItemList.Mega_EoH.get(64L),
+                            CustomItemList.GregtechMetaTileEntity_Mega_Adv_EBF.get(64),
+                            GT_ModHandler.getModItem(Botania.ID, "dice", 32L, 0),
+                            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_MAX.get(64L),
+
+                    },
+
+                    new FluidStack[] {
+                            MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(2_000_000_000L),
+                            MaterialsUEVplus.SpaceTime.getMolten(1_000_000_000),
+                            MaterialsUEVplus.MagMatter.getMolten(100_000_000),
+                            MaterialsBotania.Terrasteel.getMolten(100_000_000L) },
+                    com.github.technus.tectech.thing.CustomItemList.Machine_DebugGenny.get(1L),
+                    24 * HOURS,
+                    (int) TierEU.RECIPE_MAX);
+
             TT_recipeAdder.addResearchableAssemblylineRecipe(
                     ItemList.Hatch_CraftingInput_Bus_ME_ItemOnly.get(1L),
                     2000 * 60 * 8,
@@ -232,6 +765,7 @@ public class AssemblingLineRecipes implements Runnable {
                             Materials.Enderium.getMolten(5760L))
                     .itemOutputs(GT_ModHandler.getModItem(GraviSuite.ID, "relocator", 1, 26)).eut(TierEU.RECIPE_UV)
                     .duration(50 * MINUTES).addTo(AssemblyLine);
+
         }
 
     }
