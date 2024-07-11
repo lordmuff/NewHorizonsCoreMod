@@ -60,7 +60,9 @@ public class BacteriaRegistry {
     }
 
     private void runLateBioOBJs() {
+
         BioData bioData = createAndRegisterBioData( // BioData because Plasmis == DNA
+
                 "Barnadafis Arboriatoris", // Name
                 EnumRarity.rare, // rare (only visual)
                 750, // 7.5% chance of getting it
@@ -74,7 +76,7 @@ public class BacteriaRegistry {
                 EnumRarity.rare, // rare (only visual)
                 true // can be multiplied in the BioVat
         );
-
+/*
         CultureSet.put("BarnadaCBac", bioCulture); // save it in a Map to get it later
 
         // TCetiE culture, same as above
@@ -99,6 +101,8 @@ public class BacteriaRegistry {
                 false);
 
         CultureSet.put("CombinedBac", bioCulture);
+
+         */
 
         bioData = createAndRegisterBioData("OvumBac", EnumRarity.rare, 1500, 2);
         bioCulture = createAndRegisterBioCulture(

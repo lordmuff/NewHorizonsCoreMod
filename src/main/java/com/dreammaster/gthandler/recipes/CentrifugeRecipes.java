@@ -522,6 +522,7 @@ public class CentrifugeRecipes implements Runnable {
                 .outputChances(10000, 3300, 1000, 200).duration(15 * SECONDS).eut(TierEU.RECIPE_HV)
                 .addTo(centrifugeRecipes);
 
+        /*
         GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(GalaxySpace.ID, "item.GlowstoneDusts", 1L, 0))
                 .itemOutputs(
                         new ItemStack(Items.glowstone_dust, 2, 0),
@@ -556,6 +557,7 @@ public class CentrifugeRecipes implements Runnable {
                         CustomItemList.ProteusStoneDust.get(1L),
                         CustomItemList.ProteusStoneDust.get(1L))
                 .outputChances(10000, 9000, 7500).duration(15 * SECONDS).eut(TierEU.RECIPE_MV).addTo(centrifugeRecipes);
+         */
 
         GT_Values.RA.stdBuilder().itemInputs(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.QuartzSand, 9L))
                 .itemOutputs(
