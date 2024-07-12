@@ -3919,6 +3919,7 @@ public class ScriptNatura implements IScriptLoader {
                         GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Wood, 6L),
                         GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Wood, 1L))
                 .outputChances(10000, 8000).duration(20 * SECONDS).eut(2).addTo(maceratorRecipes);
+        /*
         Module_CustomFuels
                 .registerCustomFuelValue(getModItem(Natura.ID, "NetherPressurePlate", 1, 0, missing), (short) 75);
         Module_CustomFuels
@@ -3947,6 +3948,8 @@ public class ScriptNatura implements IScriptLoader {
                 .registerCustomFuelValue(getModItem(Natura.ID, "pressureplate.darkwood", 1, 0, missing), (short) 75);
         Module_CustomFuels
                 .registerCustomFuelValue(getModItem(Natura.ID, "pressureplate.fusewood", 1, 0, missing), (short) 75);
+         */
+
         GT_Values.RA.stdBuilder().itemInputs(getModItem(Natura.ID, "Bluebells", 1, 0, missing))
                 .itemOutputs(ItemList.Color_04.get(2L)).duration(15 * SECONDS).eut(2).addTo(extractorRecipes);
 

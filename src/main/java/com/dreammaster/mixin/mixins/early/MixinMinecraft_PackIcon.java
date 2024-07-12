@@ -25,7 +25,7 @@ public class MixinMinecraft_PackIcon {
                     target = "Lorg/lwjgl/opengl/Display;setTitle(Ljava/lang/String;)V",
                     remap = false))
     private String dreamcraft$changeWindowTitle(String original) {
-        this.dreamcraft$loadedGTNHIcon = IconLoader.setCustomIcon("assets/dreamcraft/textures/icon/GTNH_42x42.png");
+        this.dreamcraft$loadedGTNHIcon = IconLoader.setCustomIcon("assets/dreamcraft/textures/icon/forestrytime.png");
         return Refstrings.NAME + " " + Refstrings.MODPACKPACK_VERSION;
     }
 

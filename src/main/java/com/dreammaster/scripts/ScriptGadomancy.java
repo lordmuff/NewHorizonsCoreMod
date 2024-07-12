@@ -200,12 +200,7 @@ public class ScriptGadomancy implements IScriptLoader {
                 getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing),
                 'i',
                 getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing));
-        TCHelper.setResearchAspects(
-                "GADOMANCY.ANCIENT_STONES",
-                new AspectList().add(Aspect.getAspect("ignis"), 15).add(Aspect.getAspect("alienis"), 12)
-                        .add(Aspect.getAspect("perditio"), 9).add(Aspect.getAspect("terra"), 6)
-                        .add(Aspect.getAspect("permutatio"), 3));
-        TCHelper.setResearchComplexity("GADOMANCY.ANCIENT_STONES", 3);
+        //TCHelper.setResearchComplexity("GADOMANCY.ANCIENT_STONES", 3);
         ThaumcraftApi.addCrucibleRecipe(
                 "GADOMANCY.ANCIENT_STONES",
                 getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 15, missing),
@@ -697,6 +692,7 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("aqua"), 9).add(Aspect.getAspect("terra"), 6)
                         .add(Aspect.getAspect("perditio"), 3));
         TCHelper.setResearchComplexity("GADOMANCY.AURA_EFFECTS", 4);
+        /*
         TCHelper.refreshResearchPages("GADOMANCY.GOLEMSILVERWOOD");
         TCHelper.refreshResearchPages("GADOMANCY.GOLEMCOREBREAK");
         TCHelper.refreshResearchPages("GADOMANCY.GOLEMCOREBODYGUARD");
@@ -713,5 +709,6 @@ public class ScriptGadomancy implements IScriptLoader {
         TCHelper.refreshResearchPages("GADOMANCY.KNOWLEDGE_BOOK");
         TCHelper.refreshResearchPages("GADOMANCY.ESSENTIA_COMPRESSOR");
         TCHelper.refreshResearchPages("GADOMANCY.STICKYJAR");
+         */
     }
 }
