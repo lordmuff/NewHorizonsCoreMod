@@ -26,8 +26,8 @@ public class TCLoader {
     public static void run() {
         ResearchCategories.registerCategory(
                 category,
-                new ResourceLocation(Refstrings.MODID, "textures/thaumcraft/icon/icon_GTNH.png"),
-                new ResourceLocation(Refstrings.MODID, "textures/thaumcraft/tab/tab_GTNH.png"));
+                new ResourceLocation("dreamcraft:textures/thaumcraft/icon/icon_GTNH.png"),
+                new ResourceLocation("dreamcraft:textures/thaumcraft/tab/tab_GTNH.png"));
     }
 
     public static void checkRecipeProblems() {
