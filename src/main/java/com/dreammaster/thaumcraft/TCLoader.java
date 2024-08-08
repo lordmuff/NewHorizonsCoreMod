@@ -24,10 +24,12 @@ public class TCLoader {
     public static final String category = "NEWHORIZONS";
 
     public static void run() {
+        /*
         ResearchCategories.registerCategory(
-                category,
+                "NEWHORIZONS",
                 new ResourceLocation("dreamcraft:textures/thaumcraft/icon/icon_GTNH.png"),
                 new ResourceLocation("dreamcraft:textures/thaumcraft/tab/tab_GTNH.png"));
+         */
     }
 
     public static void checkRecipeProblems() {

@@ -220,8 +220,7 @@ public abstract class GT_MetaTileEntity_AirFilterBase
                 .addOtherStructurePart(getPipeString(), "Corners of the middle two layers")
                 .addOtherStructurePart("Muffler Hatch", "Sides of the middle two layers")
                 .addEnergyHatch("Any bottom layer casing", 1).addMaintenanceHatch("Any bottom layer casing", 1)
-                .addInputBus("Any bottom layer casing", 1).addOutputBus("Any bottom layer casing", 1)
-                .toolTipFinisher("GTNH Coremod");
+                .addInputBus("Any bottom layer casing", 1).addOutputBus("Any bottom layer casing", 1);
         return tt;
     }
 

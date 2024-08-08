@@ -17,7 +17,7 @@ import com.dreammaster.coremod.DreamCoreMod;
 import com.dreammaster.lib.Refstrings;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
-@Mixin(Minecraft.class)
+@Mixin(value = Minecraft.class, priority = 2000)
 public class MixinMinecraft_ConfirmExit {
 
     @Unique
@@ -43,7 +43,7 @@ public class MixinMinecraft_ConfirmExit {
                 final JFrame frame = new JFrame();
                 frame.setAlwaysOnTop(true);
                 final URL resource = IconLoader.class.getClassLoader()
-                        .getResource("assets/dreamcraft/textures/icon/GTNH_42x42.png");
+                        .getResource("assets/dreamcraft/textures/icon/forestrytime");
                 final ImageIcon imageIcon = resource == null ? null : new ImageIcon(resource);
                 final int result = JOptionPane.showConfirmDialog(
                         frame,
