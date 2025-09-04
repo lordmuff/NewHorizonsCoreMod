@@ -28,7 +28,6 @@ public class ScriptLoader {
                         new ScriptAmunRa(),
                         new ScriptAppliedEnergistics2(),
                         new ScriptArchitectureCraft(),
-                        new ScriptAutomagy(),
                         new ScriptAvaritiaAddons(),
                         new ScriptBackpack(),
                         new ScriptBattleGear(),
