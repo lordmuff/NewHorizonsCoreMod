@@ -3,18 +3,18 @@ package com.dreammaster.scripts;
 import static gregtech.api.enums.Mods.GraviSuite;
 import static gregtech.api.enums.Mods.GraviSuiteNEO;
 import static gregtech.api.enums.Mods.IndustrialCraft2;
-import static gregtech.api.enums.Mods.NewHorizonsCoreMod;
-import static gregtech.api.util.GT_ModHandler.getModItem;
+import static gregtech.api.util.GTModHandler.getModItem;
 
 import java.util.Arrays;
 import java.util.List;
 
 import com.dreammaster.gthandler.CustomItemList;
+import com.dreammaster.item.NHItemList;
 
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_OreDictUnificator;
+import gregtech.api.util.GTOreDictUnificator;
 
 public class ScriptGraviSuite implements IScriptLoader {
 
@@ -35,9 +35,9 @@ public class ScriptGraviSuite implements IScriptLoader {
                 getModItem(IndustrialCraft2.ID, "itemPartAlloy", 1, 0, missing),
                 getModItem(IndustrialCraft2.ID, "itemPartIridium", 1, 0, missing),
                 getModItem(IndustrialCraft2.ID, "itemPartAlloy", 1, 0, missing),
-                GT_OreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorIV, 1L),
-                GT_OreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorIV, 1L),
-                GT_OreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorIV, 1L),
+                GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorIV, 1L),
+                GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorIV, 1L),
+                GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorIV, 1L),
                 getModItem(IndustrialCraft2.ID, "itemPartAlloy", 1, 0, missing),
                 getModItem(IndustrialCraft2.ID, "itemPartIridium", 1, 0, missing),
                 getModItem(IndustrialCraft2.ID, "itemPartAlloy", 1, 0, missing));
@@ -46,9 +46,9 @@ public class ScriptGraviSuite implements IScriptLoader {
                 getModItem(GraviSuite.ID, "itemSimpleItem", 1, 0, missing),
                 getModItem(GraviSuite.ID, "itemSimpleItem", 1, 0, missing),
                 getModItem(GraviSuite.ID, "itemSimpleItem", 1, 0, missing),
-                GT_OreDictUnificator.get(OrePrefixes.wireGt12, Materials.SuperconductorLuV, 1L),
+                GTOreDictUnificator.get(OrePrefixes.wireGt12, Materials.SuperconductorLuV, 1L),
                 "plateRhodium-PlatedPalladium",
-                GT_OreDictUnificator.get(OrePrefixes.wireGt12, Materials.SuperconductorLuV, 1L),
+                GTOreDictUnificator.get(OrePrefixes.wireGt12, Materials.SuperconductorLuV, 1L),
                 getModItem(GraviSuite.ID, "itemSimpleItem", 1, 0, missing),
                 getModItem(GraviSuite.ID, "itemSimpleItem", 1, 0, missing),
                 getModItem(GraviSuite.ID, "itemSimpleItem", 1, 0, missing));
@@ -58,7 +58,7 @@ public class ScriptGraviSuite implements IScriptLoader {
                 getModItem(IndustrialCraft2.ID, "reactorHeatSwitchDiamond", 1, 1, missing),
                 getModItem(IndustrialCraft2.ID, "reactorVentDiamond", 1, 1, missing),
                 ItemList.Reactor_Coolant_NaK_3.get(1L),
-                "plateColdCallistoIce",
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.CallistoIce, 1),
                 ItemList.Reactor_Coolant_NaK_3.get(1L),
                 getModItem(IndustrialCraft2.ID, "reactorPlatingHeat", 1, 0, missing),
                 getModItem(IndustrialCraft2.ID, "reactorHeatSwitchDiamond", 1, 1, missing),
@@ -69,44 +69,11 @@ public class ScriptGraviSuite implements IScriptLoader {
                 getModItem(IndustrialCraft2.ID, "reactorHeatSwitchDiamond", 1, 1, missing),
                 getModItem(IndustrialCraft2.ID, "reactorVentDiamond", 1, 1, missing),
                 ItemList.Reactor_Coolant_He_3.get(1L),
-                "plateColdCallistoIce",
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.CallistoIce, 1),
                 ItemList.Reactor_Coolant_He_3.get(1L),
                 getModItem(IndustrialCraft2.ID, "reactorPlatingHeat", 1, 0, missing),
                 getModItem(IndustrialCraft2.ID, "reactorHeatSwitchDiamond", 1, 1, missing),
                 getModItem(IndustrialCraft2.ID, "reactorPlatingHeat", 1, 0, missing));
-        addShapedRecipe(
-                getModItem(GraviSuite.ID, "itemSimpleItem", 1, 4, missing),
-                "plateDenseNeodymiumMagnetic",
-                getModItem(IndustrialCraft2.ID, "itemRecipePart", 1, 0, missing),
-                "plateDenseNeodymiumMagnetic",
-                "plateDenseCopper",
-                GT_OreDictUnificator.get(OrePrefixes.wireGt12, Materials.SuperconductorIV, 1L),
-                "plateDenseCopper",
-                "plateDenseNeodymiumMagnetic",
-                getModItem(IndustrialCraft2.ID, "itemRecipePart", 1, 0, missing),
-                "plateDenseNeodymiumMagnetic");
-        addShapedRecipe(
-                getModItem(GraviSuite.ID, "itemSimpleItem", 1, 5, missing),
-                "craftingToolWrench",
-                "plateCopper",
-                "craftingToolHardHammer",
-                getModItem(IndustrialCraft2.ID, "itemPartIridium", 1, 0, missing),
-                getModItem(IndustrialCraft2.ID, "blockMachine2", 1, 1, missing),
-                getModItem(IndustrialCraft2.ID, "itemPartIridium", 1, 0, missing),
-                GT_OreDictUnificator.get(OrePrefixes.wireGt12, Materials.SuperconductorIV, 1L),
-                ItemList.Transformer_EV_HV.get(1L),
-                GT_OreDictUnificator.get(OrePrefixes.wireGt12, Materials.SuperconductorIV, 1L));
-        addShapedRecipe(
-                getModItem(GraviSuite.ID, "vajra", 1, 27, missing),
-                CustomItemList.EngravedEnergyChip.get(1L),
-                getModItem(GraviSuite.ID, "itemSimpleItem", 1, 4, missing),
-                "lensReinforcedGlass",
-                "plateAlloyCarbon",
-                getModItem(GraviSuite.ID, "itemSimpleItem", 1, 5, missing),
-                "plateAlloyCarbon",
-                "plateAlloyIridium",
-                "batteryElite",
-                "plateAlloyIridium");
         addShapedRecipe(
                 getModItem(GraviSuite.ID, "itemSimpleItem", 1, 6, missing),
                 "itemCasingAluminium",
@@ -154,7 +121,7 @@ public class ScriptGraviSuite implements IScriptLoader {
         addShapedRecipe(
                 createItemStack(GraviSuite.ID, "advDDrill", 1, 27, "{toolXP:0.0d,charge:0,toolMode:0}", missing),
                 "screwIridium",
-                getModItem(NewHorizonsCoreMod.ID, "item.ReinforcedIridiumDrillTip", 1, 0, missing),
+                NHItemList.ReinforcedIridiumDrillTip.getIS(1),
                 "craftingToolScrewdriver",
                 "gearGtSmallIridium",
                 ItemList.Electric_Motor_EV.get(1L),
@@ -162,6 +129,7 @@ public class ScriptGraviSuite implements IScriptLoader {
                 "plateAlloyIridium",
                 "batteryData",
                 "plateAlloyIridium");
+        addShapelessRecipe(ItemList.Tool_Vajra.get(1), getModItem(GraviSuite.ID, "vajra", 1, wildcard, missing));
 
     }
 }

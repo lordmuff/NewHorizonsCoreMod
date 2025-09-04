@@ -5,14 +5,15 @@ import static gregtech.api.enums.Mods.MineAndBladeBattleGear2;
 import static gregtech.api.enums.Mods.Minecraft;
 import static gregtech.api.enums.Mods.TinkerConstruct;
 import static gregtech.api.enums.Mods.TinkersGregworks;
-import static gregtech.api.util.GT_ModHandler.getModItem;
+import static gregtech.api.util.GTModHandler.getModItem;
 
 import java.util.Arrays;
 import java.util.List;
 
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_OreDictUnificator;
+import gregtech.api.enums.ToolDictNames;
+import gregtech.api.util.GTOreDictUnificator;
 
 public class ScriptBattleGear implements IScriptLoader {
 
@@ -127,7 +128,7 @@ public class ScriptBattleGear implements IScriptLoader {
                 null);
         addShapedRecipe(
                 getModItem(MineAndBladeBattleGear2.ID, "dagger.wood", 1, 0, missing),
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Wood, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.Wood, 1L),
                 "craftingToolFile",
                 null,
                 "stickWood",
@@ -221,7 +222,7 @@ public class ScriptBattleGear implements IScriptLoader {
         addShapedRecipe(
                 getModItem(MineAndBladeBattleGear2.ID, "waraxe.wood", 1, 0, missing),
                 getModItem(TinkerConstruct.ID, "hatchetHead", 1, 0, missing),
-                "craftingToolSoftHammer",
+                ToolDictNames.craftingToolSoftMallet.name(),
                 getModItem(TinkerConstruct.ID, "hatchetHead", 1, 0, missing),
                 getModItem(TinkerConstruct.ID, "hatchetHead", 1, 0, missing),
                 "stickWood",
@@ -306,7 +307,7 @@ public class ScriptBattleGear implements IScriptLoader {
                 getModItem(TinkerConstruct.ID, "heavyPlate", 1, 0, missing),
                 getModItem(TinkerConstruct.ID, "heavyPlate", 1, 0, missing),
                 "stickWood",
-                "craftingToolSoftHammer",
+                ToolDictNames.craftingToolSoftMallet.name(),
                 null);
         addShapedRecipe(
                 getModItem(MineAndBladeBattleGear2.ID, "mace.stone", 1, 0, missing),

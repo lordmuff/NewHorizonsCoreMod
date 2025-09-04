@@ -4,6 +4,7 @@ import static gregtech.api.enums.Mods.AdvancedSolarPanel;
 import static gregtech.api.enums.Mods.Avaritia;
 import static gregtech.api.enums.Mods.BloodArsenal;
 import static gregtech.api.enums.Mods.BloodMagic;
+import static gregtech.api.enums.Mods.Botania;
 import static gregtech.api.enums.Mods.DraconicEvolution;
 import static gregtech.api.enums.Mods.ElectroMagicTools;
 import static gregtech.api.enums.Mods.EternalSingularity;
@@ -12,7 +13,6 @@ import static gregtech.api.enums.Mods.ForbiddenMagic;
 import static gregtech.api.enums.Mods.Gadomancy;
 import static gregtech.api.enums.Mods.GalaxySpace;
 import static gregtech.api.enums.Mods.GraviSuite;
-import static gregtech.api.enums.Mods.GregTech;
 import static gregtech.api.enums.Mods.IndustrialCraft2;
 import static gregtech.api.enums.Mods.Minecraft;
 import static gregtech.api.enums.Mods.TaintedMagic;
@@ -22,17 +22,18 @@ import static gregtech.api.enums.Mods.ThaumicTinkerer;
 import static gregtech.api.enums.Mods.TinkerConstruct;
 import static gregtech.api.enums.Mods.TinkersGregworks;
 import static gregtech.api.enums.Mods.UniversalSingularities;
+import static gregtech.api.enums.Mods.WitchingGadgets;
 import static gregtech.api.recipe.RecipeMaps.alloySmelterRecipes;
 import static gregtech.api.recipe.RecipeMaps.assemblerRecipes;
 import static gregtech.api.recipe.RecipeMaps.extractorRecipes;
 import static gregtech.api.recipe.RecipeMaps.extruderRecipes;
 import static gregtech.api.recipe.RecipeMaps.formingPressRecipes;
 import static gregtech.api.recipe.RecipeMaps.maceratorRecipes;
-import static gregtech.api.util.GT_ModHandler.getModItem;
-import static gregtech.api.util.GT_RecipeBuilder.HOURS;
-import static gregtech.api.util.GT_RecipeBuilder.MINUTES;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
-import static gregtech.api.util.GT_RecipeBuilder.TICKS;
+import static gregtech.api.util.GTModHandler.getModItem;
+import static gregtech.api.util.GTRecipeBuilder.HOURS;
+import static gregtech.api.util.GTRecipeBuilder.MINUTES;
+import static gregtech.api.util.GTRecipeBuilder.SECONDS;
+import static gregtech.api.util.GTRecipeBuilder.TICKS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,19 +54,18 @@ import com.rwtema.extrautils.ExtraUtils;
 import fox.spiteful.avaritia.compat.ticon.Tonkers;
 import fox.spiteful.avaritia.crafting.CompressorManager;
 import fox.spiteful.avaritia.crafting.ExtremeCraftingManager;
-import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.GTValues;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.enums.TierEU;
 import gregtech.api.recipe.RecipeCategories;
-import gregtech.api.util.GT_ModHandler;
-import gregtech.api.util.GT_OreDictUnificator;
+import gregtech.api.util.GTModHandler;
+import gregtech.api.util.GTOreDictUnificator;
 import tconstruct.smeltery.TinkerSmeltery;
 import tconstruct.tools.TinkerTools;
 import tconstruct.tools.items.Pattern;
 import tconstruct.weaponry.TinkerWeaponry;
-import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import vexatos.tgregworks.reference.PartTypes;
@@ -86,6 +86,7 @@ public class ScriptAvaritia implements IScriptLoader {
                 Avaritia.ID,
                 BloodArsenal.ID,
                 BloodMagic.ID,
+                Botania.ID,
                 DraconicEvolution.ID,
                 ElectroMagicTools.ID,
                 EternalSingularity.ID,
@@ -101,7 +102,8 @@ public class ScriptAvaritia implements IScriptLoader {
                 Thaumcraft.ID,
                 ThaumicBases.ID,
                 Gadomancy.ID,
-                TaintedMagic.ID);
+                TaintedMagic.ID,
+                WitchingGadgets.ID);
     }
 
     @Override
@@ -367,7 +369,7 @@ public class ScriptAvaritia implements IScriptLoader {
                 'e',
                 getModItem(UniversalSingularities.ID, "universal.projectRed.singularity", 1, 0, missing),
                 'f',
-                getModItem(UniversalSingularities.ID, "universal.tinkersConstruct.singularity", 1, 0, missing),
+                getModItem(UniversalSingularities.ID, "universal.general.singularity", 1, 32, missing),
                 'g',
                 getModItem(UniversalSingularities.ID, "universal.tinkersConstruct.singularity", 1, 1, missing),
                 'h',
@@ -409,9 +411,9 @@ public class ScriptAvaritia implements IScriptLoader {
                 getModItem(EternalSingularity.ID, "combined_singularity", 1, 6, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 getModItem(Avaritia.ID, "Orb_Armok", 1, 0, missing),
-                "---aaa---",
+                "---aia---",
                 "--ababa--",
-                "--aacaa--",
+                "--jacaj--",
                 "-dababad-",
                 "ddeafagdd",
                 "-dddhddd-",
@@ -433,7 +435,11 @@ public class ScriptAvaritia implements IScriptLoader {
                 'g',
                 getModItem(TaintedMagic.ID, "ItemFocusEldritch", 1, 0, missing),
                 'h',
-                new ItemStack(TinkerTools.largePlate, 1, Tonkers.neutroniumId));
+                new ItemStack(TinkerTools.largePlate, 1, Tonkers.neutroniumId),
+                'i',
+                getModItem(Botania.ID, "blackHoleTalisman", 1, 0, missing),
+                'j',
+                getModItem(BloodMagic.ID, "sigilOfElementalAffinity", 1, 0, missing));
 
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 getModItem(Avaritia.ID, "Infinity_Sword", 1, 0, missing),
@@ -443,7 +449,7 @@ public class ScriptAvaritia implements IScriptLoader {
                 "----aea--",
                 "-f-aga---",
                 "--fha----",
-                "--if-----",
+                "--kf-----",
                 "-i--f----",
                 "j--------",
                 'a',
@@ -459,7 +465,7 @@ public class ScriptAvaritia implements IScriptLoader {
                 'c',
                 getModItem(TaintedMagic.ID, "ItemPrimordialEdge", 1, 0, missing),
                 'd',
-                getModItem(IndustrialCraft2.ID, "itemNanoSaber", 1, wildcard, missing),
+                createItemStack(ElectroMagicTools.ID, "SuperchargedMjolnir", 1, 1, "{charge:2000000.0d}", missing),
                 'e',
                 getModItem(ThaumicTinkerer.ID, "ichorSwordGem", 1, wildcard, missing),
                 'f',
@@ -471,17 +477,13 @@ public class ScriptAvaritia implements IScriptLoader {
                 'i',
                 "blockCosmicNeutronium",
                 'j',
-                getModItem(Avaritia.ID, "Resource", 1, 5, missing));
+                getModItem(Avaritia.ID, "Resource", 1, 5, missing),
+                'k',
+                getModItem(Botania.ID, "starSword", 1, 0, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
-                createItemStack(
-                        Avaritia.ID,
-                        "Infinity_Pickaxe",
-                        1,
-                        0,
-                        "{ench:[0:{lvl:10s,id:35s}],hammer:0b}",
-                        missing),
+                createItemStack(Avaritia.ID, "Infinity_Pickaxe", 1, 0, "{ench:[0:{lvl:10s,id:35s}]}", missing),
                 "-aaaaaaa-",
-                "abbcdebba",
+                "ablcdemba",
                 "aa-fgh-aa",
                 "----i----",
                 "----i----",
@@ -510,13 +512,17 @@ public class ScriptAvaritia implements IScriptLoader {
                 'j',
                 getModItem(Avaritia.ID, "big_pearl", 1, 0, missing),
                 'k',
-                getModItem(Avaritia.ID, "Resource", 1, 5, missing));
+                getModItem(Avaritia.ID, "Resource", 1, 5, missing),
+                'l',
+                createItemStack(Botania.ID, "terraPick", 1, 0, "{mana:2147483421,tipped:1b}", missing),
+                'm',
+                getModItem(ForbiddenMagic.ID, "MorphPickaxe", 1, 0, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
-                createItemStack(Avaritia.ID, "Infinity_Shovel", 1, 0, "{destroyer:0b}", missing),
+                getModItem(Avaritia.ID, "Infinity_Shovel", 1, 0, missing),
                 "------aaa",
                 "-----abca",
-                "------dea",
-                "-----f-a-",
+                "-----kdea",
+                "-----fla-",
                 "----f----",
                 "---f-----",
                 "-gf------",
@@ -541,22 +547,26 @@ public class ScriptAvaritia implements IScriptLoader {
                 'i',
                 getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing),
                 'j',
-                getModItem(Avaritia.ID, "Resource", 1, 5, missing));
+                getModItem(Avaritia.ID, "Resource", 1, 5, missing),
+                'k',
+                getModItem(Botania.ID, "elementiumShovel", 1, 0, missing),
+                'l',
+                getModItem(ForbiddenMagic.ID, "TaintShovel", 1, 0, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 createItemStack(Thaumcraft.ID, "WandCasting", 1, 9000, "{cap:\"matrix\",rod:\"infinity\"}", missing),
                 "--a------",
-                "-aba-----",
+                "-oba-----",
                 "acdef----",
                 "-aegeh---",
                 "--iegej--",
                 "---kegea-",
                 "----ledma",
-                "-----aba-",
+                "-----abo-",
                 "------a--",
                 'a',
                 "plateInfinity",
                 'b',
-                getModItem(ThaumicTinkerer.ID, "blockTalisman", 1, 0, missing),
+                getModItem(ThaumicTinkerer.ID, "placementMirror", 1, 0, missing),
                 'c',
                 getModItem(TaintedMagic.ID, "ItemFocusEldritch", 1, 0, missing),
                 'd',
@@ -584,11 +594,13 @@ public class ScriptAvaritia implements IScriptLoader {
                 'l',
                 getModItem(BloodMagic.ID, "earthScribeTool", 1, 0, missing),
                 'm',
-                getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing));
+                getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing),
+                'o',
+                getModItem(ForbiddenMagic.ID, "WandCaps", 1, 5, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 getModItem(Avaritia.ID, "Infinity_Axe", 1, 0, missing),
-                "-a-------",
-                "abaaa----",
+                "-aaa-----",
+                "abjka----",
                 "acda-----",
                 "-ae------",
                 "--e------",
@@ -611,15 +623,19 @@ public class ScriptAvaritia implements IScriptLoader {
                 'g',
                 getModItem(Avaritia.ID, "Resource", 1, 5, missing),
                 'h',
-                getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing));
+                getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing),
+                'j',
+                getModItem(Botania.ID, "terraAxe", 1, 0, missing),
+                'k',
+                getModItem(WitchingGadgets.ID, "item.WG_PrimordialAxe", 1, 0, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 getModItem(Avaritia.ID, "Infinity_Bow", 1, 0, missing),
                 "---aab---",
                 "--a-c----",
                 "-a--c----",
-                "a---c----",
+                "a---cg---",
                 "d---ef---",
-                "a---c----",
+                "a---ch---",
                 "-a--c----",
                 "--a-c----",
                 "---aab---",
@@ -633,6 +649,10 @@ public class ScriptAvaritia implements IScriptLoader {
                 getModItem(Avaritia.ID, "Resource", 1, 5, missing),
                 'e',
                 getModItem(DraconicEvolution.ID, "draconicBow", 1, 0, missing),
+                'g',
+                getModItem(Botania.ID, "crystalBow", 1, 0),
+                'h',
+                getModItem(GalaxySpace.ID, "item.QuantBow", 1, 0),
                 'f',
                 getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
@@ -661,7 +681,7 @@ public class ScriptAvaritia implements IScriptLoader {
                 'g',
                 getModItem(DraconicEvolution.ID, "draconicHelm", 1, 0, missing),
                 'h',
-                getModItem(BloodMagic.ID, "sanguineHelmet", 1, 0, missing),
+                getModItem(Botania.ID, "terrasteelHelmReveal", 1, 0, missing),
                 'i',
                 getModItem(GalaxySpace.ID, "item.spacesuit_helmetglasses", 1, 0, missing),
                 'j',
@@ -692,7 +712,7 @@ public class ScriptAvaritia implements IScriptLoader {
                 'e',
                 getModItem(ThaumicTinkerer.ID, "ichorclothChestGem", 1, wildcard, missing),
                 'f',
-                getModItem(BloodMagic.ID, "sanguineRobe", 1, 0, missing),
+                getModItem(Botania.ID, "terrasteelChest", 1, 0, missing),
                 'g',
                 getModItem(GalaxySpace.ID, "item.spacesuit_jetplate", 1, 0, missing),
                 'h',
@@ -707,8 +727,8 @@ public class ScriptAvaritia implements IScriptLoader {
                 getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 getModItem(Avaritia.ID, "Infinity_Pants", 1, 0, missing),
-                "aaaaaaaaa",
-                "abcdefgha",
+                "aaaaeaaaa",
+                "abcdmfgha",
                 "aiiijiiia",
                 "aiaakaaia",
                 "aia---aia",
@@ -739,7 +759,9 @@ public class ScriptAvaritia implements IScriptLoader {
                 'k',
                 getModItem(Avaritia.ID, "Resource", 1, 5, missing),
                 'l',
-                getModItem(Avaritia.ID, "big_pearl", 1, 0, missing));
+                getModItem(Avaritia.ID, "big_pearl", 1, 0, missing),
+                'm',
+                getModItem(Botania.ID, "terrasteelLegs", 1, 0, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 getModItem(Avaritia.ID, "Infinity_Shoes", 1, 0, missing),
                 "---------",
@@ -766,7 +788,7 @@ public class ScriptAvaritia implements IScriptLoader {
                 'g',
                 getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing),
                 'h',
-                getModItem(BloodMagic.ID, "sanguineBoots", 1, 0, missing),
+                getModItem(Botania.ID, "terrasteelBoots", 1, 0, missing),
                 'i',
                 getModItem(GalaxySpace.ID, "item.spacesuit_gravityboots", 1, 0, missing),
                 'j',
@@ -807,16 +829,17 @@ public class ScriptAvaritia implements IScriptLoader {
                 'k',
                 getModItem(Avaritia.ID, "Resource", 1, 5, missing));
 
+        // Neutronium Compressor Multi Controller
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
-                getModItem(Avaritia.ID, "Neutronium_Compressor", 1, 0, missing),
+                ItemList.Machine_Multi_NeutroniumCompressor.get(1),
                 "abacdcaba",
-                "c-e-f-e-c",
-                "dghgfghgd",
-                "b-eijie-b",
-                "bffjkjffb",
-                "b-eijie-b",
-                "dghgfghgd",
-                "c-e-f-e-c",
+                "c-e-c-e-c",
+                "aghgcghga",
+                "c-eijie-c",
+                "fccjkjccf",
+                "c-eijie-c",
+                "aghgcghga",
+                "c-e-c-e-c",
                 "abacdcaba",
                 'a',
                 getModItem(Avaritia.ID, "Resource_Block", 1, 0, missing),
@@ -825,11 +848,11 @@ public class ScriptAvaritia implements IScriptLoader {
                 'c',
                 getModItem(Avaritia.ID, "Resource", 1, 1, missing),
                 'd',
-                new ItemStack(TinkerTools.largePlate, 1, ExtraUtils.tcon_bedrock_material_id),
+                GTOreDictUnificator.get(OrePrefixes.plateSuperdense, Materials.Bedrockium, 1),
                 'e',
                 ItemList.Electric_Piston_UV.get(1L),
                 'f',
-                TGregUtils.newItemStack(Materials.BlackPlutonium, PartTypes.LargePlate, 1),
+                GTOreDictUnificator.get(OrePrefixes.plateSuperdense, Materials.BlackPlutonium, 1),
                 'g',
                 ItemList.Conveyor_Module_UV.get(1L),
                 'h',
@@ -839,103 +862,79 @@ public class ScriptAvaritia implements IScriptLoader {
                 'j',
                 "plateNeutronium",
                 'k',
-                getModItem(GregTech.ID, "gt.blockmachines", 1, 10812, missing));
+                ItemList.CompressorUV.get(1));
 
         CompressorManager.addRecipe(
                 getModItem(Avaritia.ID, "Resource", 1, 5, missing),
                 64,
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.InfinityCatalyst, 1L));
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.InfinityCatalyst, 1L));
 
-        GT_Values.RA.stdBuilder()
-                .itemInputs(getModItem(Avaritia.ID, "Resource", 1, 4, missing), ItemList.Shape_Mold_Nugget.get(0L))
-                .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 3, missing)).duration(2 * MINUTES).eut(480)
-                .addTo(alloySmelterRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(getModItem(Avaritia.ID, "Resource_Block", 1, 0, missing), ItemList.Shape_Mold_Ingot.get(0L))
-                .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 4, missing)).duration(4 * MINUTES).eut(480)
-                .addTo(alloySmelterRecipes);
-        GT_Values.RA.stdBuilder()
+                .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 4, missing)).duration(4 * MINUTES)
+                .eut(TierEU.RECIPE_HV).addTo(alloySmelterRecipes);
+        GTValues.RA.stdBuilder()
                 .itemInputs(
                         getModItem(Avaritia.ID, "Resource", 4, 0, missing),
                         getModItem(Minecraft.ID, "nether_star", 2, 0, missing))
-                .itemOutputs(getModItem(Avaritia.ID, "Resource", 1, 1, missing)).duration(1 * MINUTES).eut(480)
-                .addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder().itemInputs(getModItem(Avaritia.ID, "Double_Craft", 1, 0))
+                .itemOutputs(getModItem(Avaritia.ID, "Resource", 1, 1, missing)).duration(1 * MINUTES)
+                .eut(TierEU.RECIPE_HV).addTo(assemblerRecipes);
+        GTValues.RA.stdBuilder().itemInputs(getModItem(Avaritia.ID, "Double_Craft", 1, 0))
                 .itemOutputs(new ItemStack(Blocks.crafting_table, 9)).duration(15 * SECONDS).eut(2)
                 .addTo(extractorRecipes);
-        GT_Values.RA.stdBuilder().itemInputs(getModItem(Avaritia.ID, "Triple_Craft", 1, 0))
+        GTValues.RA.stdBuilder().itemInputs(getModItem(Avaritia.ID, "Triple_Craft", 1, 0))
                 .itemOutputs(getModItem(Avaritia.ID, "Double_Craft", 9, 0, missing)).duration(15 * SECONDS).eut(2)
                 .addTo(extractorRecipes);
-        GT_Values.RA.stdBuilder().itemInputs(getModItem(Avaritia.ID, "Crystal_Matrix", 1, 0))
+        GTValues.RA.stdBuilder().itemInputs(getModItem(Avaritia.ID, "Crystal_Matrix", 1, 0))
                 .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 1, missing)).duration(15 * SECONDS).eut(2)
                 .addTo(extractorRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
                         getModItem(Avaritia.ID, "Resource_Block", 1, 0, missing),
                         ItemList.Shape_Extruder_Ingot.get(0L))
-                .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 4, missing)).duration(50 * SECONDS).eut(524000)
-                .addTo(extruderRecipes);
-        GT_Values.RA.stdBuilder()
+                .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 4, missing)).duration(50 * SECONDS)
+                .eut(TierEU.RECIPE_UV).addTo(extruderRecipes);
+        GTValues.RA.stdBuilder()
                 .itemInputs(
                         getModItem(Avaritia.ID, "Resource_Block", 1, 1, missing),
                         ItemList.Shape_Extruder_Ingot.get(0L))
-                .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 6, missing)).duration(1 * MINUTES).eut(524000)
-                .addTo(extruderRecipes);
-        GT_Values.RA.stdBuilder()
-                .itemInputs(getModItem(Avaritia.ID, "Resource", 1, 6, missing), ItemList.Shape_Extruder_Plate.get(0L))
-                .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Infinity, 1L))
-                .duration(3 * MINUTES + 20 * SECONDS).eut(524000).addTo(extruderRecipes);
-        GT_Values.RA.stdBuilder()
+                .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 6, missing)).duration(1 * MINUTES)
+                .eut(TierEU.RECIPE_UV).addTo(extruderRecipes);
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(GregTech.ID, "gt.metaitem.01", 1, 11397, missing),
-                        ItemList.Shape_Extruder_Plate.get(0L))
-                .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Infinity, 1L))
-                .duration(3 * MINUTES + 20 * SECONDS).eut(524000).addTo(extruderRecipes);
-        GT_Values.RA.stdBuilder()
-                .itemInputs(getModItem(Avaritia.ID, "Resource", 1, 4, missing), ItemList.Shape_Extruder_Plate.get(0L))
-                .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.plate, Materials.CosmicNeutronium, 1L))
-                .duration(2 * MINUTES + 30 * SECONDS).eut(524000).addTo(extruderRecipes);
-        GT_Values.RA.stdBuilder()
-                .itemInputs(
-                        getModItem(GregTech.ID, "gt.metaitem.01", 1, 11982, missing),
-                        ItemList.Shape_Extruder_Plate.get(0L))
-                .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.plate, Materials.CosmicNeutronium, 1L))
-                .duration(2 * MINUTES + 30 * SECONDS).eut(524000).addTo(extruderRecipes);
-        GT_Values.RA.stdBuilder()
-                .itemInputs(
-                        GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Diamond, 4L),
+                        GTOreDictUnificator.get(OrePrefixes.plate, Materials.Diamond, 4L),
                         CustomItemList.StainlessSteelBars.get(1L))
-                .itemOutputs(getModItem(Avaritia.ID, "Resource", 1, 0, missing)).duration(10 * SECONDS).eut(120)
-                .addTo(formingPressRecipes);
-        GT_Values.RA.stdBuilder().itemInputs(getModItem(Avaritia.ID, "Resource", 1, 3, missing))
+                .itemOutputs(getModItem(Avaritia.ID, "Resource", 1, 0, missing)).duration(10 * SECONDS)
+                .eut(TierEU.RECIPE_MV).addTo(formingPressRecipes);
+        GTValues.RA.stdBuilder().itemInputs(getModItem(Avaritia.ID, "Resource", 1, 3, missing))
                 .itemOutputs(getModItem(Avaritia.ID, "Resource", 9, 2, missing)).outputChances(10000)
                 .duration(15 * SECONDS).eut(2).addTo(maceratorRecipes);
 
         TCHelper.removeInfusionRecipe(getModItem(Avaritia.ID, "Akashic_Record", 1, 0, missing));
-        ThaumcraftApi.addInfusionCraftingRecipe(
+        TCHelper.addInfusionCraftingRecipe(
                 "AKASHIC",
                 getModItem(Avaritia.ID, "Akashic_Record", 1, 0, missing),
                 24,
                 new AspectList().add(Aspect.getAspect("praecantatio"), 512).add(Aspect.getAspect("cognitio"), 128)
                         .add(Aspect.getAspect("sensus"), 96).add(Aspect.getAspect("luxuria"), 96)
                         .add(Aspect.getAspect("tempus"), 64).add(Aspect.getAspect("terminus"), 128),
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Infinity, 1L),
-                new ItemStack[] { getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing),
-                        getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
-                        getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
-                        getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
-                        getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
-                        getModItem(Avaritia.ID, "big_pearl", 1, 0, missing),
-                        getModItem(Gadomancy.ID, "BlockKnowledgeBook", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "ItemThaumonomicon", 1, 0, missing),
-                        getModItem(TaintedMagic.ID, "ItemFocusMeteorology", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "ItemEldritchObject", 1, 1, missing),
-                        getModItem(Gadomancy.ID, "BlockKnowledgeBook", 1, 0, missing),
-                        getModItem(Avaritia.ID, "big_pearl", 1, 0, missing),
-                        getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
-                        getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
-                        getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
-                        getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing), });
+                OrePrefixes.plate.get(Materials.Infinity),
+                getModItem(TaintedMagic.ID, "ItemFocusTime", 1, 0, missing),
+                getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
+                getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
+                getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
+                getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
+                getModItem(Avaritia.ID, "big_pearl", 1, 0, missing),
+                getModItem(Gadomancy.ID, "BlockKnowledgeBook", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "ItemThaumonomicon", 1, 0, missing),
+                getModItem(TaintedMagic.ID, "ItemFocusMeteorology", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "ItemEldritchObject", 1, 1, missing),
+                getModItem(Gadomancy.ID, "BlockKnowledgeBook", 1, 0, missing),
+                getModItem(Avaritia.ID, "big_pearl", 1, 0, missing),
+                getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
+                getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
+                getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing),
+                getModItem(ThaumicBases.ID, "knoseFragment", 1, 6, missing));
         TCHelper.refreshResearchPages("AKASHIC");
 
         registerTinkerPartsRecipes();
@@ -964,11 +963,6 @@ public class ScriptAvaritia implements IScriptLoader {
                         10 * MINUTES + 40 * SECONDS,
                         TierEU.RECIPE_MV),
                 new TinkerMaterialWrapper(
-                        Materials.Ardite.getIngots(1),
-                        TinkerTools.MaterialID.Ardite,
-                        8 * MINUTES + 5 * SECONDS + 4 * TICKS,
-                        TierEU.RECIPE_MV),
-                new TinkerMaterialWrapper(
                         Materials.Manyullyn.getIngots(1),
                         TinkerTools.MaterialID.Manyullyn,
                         16 * MINUTES,
@@ -994,11 +988,6 @@ public class ScriptAvaritia implements IScriptLoader {
                         5 * MINUTES + 20 * SECONDS,
                         TierEU.RECIPE_LV),
                 new TinkerMaterialWrapper(
-                        Materials.PigIron.getIngots(1),
-                        TinkerTools.MaterialID.PigIron,
-                        8 * MINUTES + 53 * SECONDS + 4 * TICKS,
-                        TierEU.RECIPE_LV),
-                new TinkerMaterialWrapper(
                         new ItemStack(ExtraUtils.unstableIngot, 1, 0),
                         ExtraUtils.tcon_unstable_material_id,
                         1 * MINUTES + 20 * SECONDS,
@@ -1019,7 +1008,7 @@ public class ScriptAvaritia implements IScriptLoader {
                         1 * MINUTES + 18 * SECONDS,
                         TierEU.RECIPE_LV),
                 new TinkerMaterialWrapper(
-                        GT_ModHandler.getModItem(BloodArsenal.ID, "blood_infused_iron", 1L, 0),
+                        GTModHandler.getModItem(BloodArsenal.ID, "blood_infused_iron", 1L, 0),
                         251, // com.arc.bloodarsenal.common.BloodArsenalConfig.bloodInfusedIronID
                         24 * MINUTES,
                         TierEU.RECIPE_LV),
@@ -1073,7 +1062,7 @@ public class ScriptAvaritia implements IScriptLoader {
                 if (material.ingot == null) continue;
                 ItemStack input = material.ingot.copy();
                 input.stackSize = (int) Math.ceil((float) cost / 2);
-                GT_Values.RA.stdBuilder().itemInputs(input, patternItem)
+                GTValues.RA.stdBuilder().itemInputs(input, patternItem)
                         .itemOutputs(new ItemStack(toolItem, 1, material.materialId))
                         .recipeCategory(RecipeCategories.ticPartExtruding)
                         .duration(Math.min((long) material.durationPer16 * cost / 16, Integer.MAX_VALUE))

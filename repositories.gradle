@@ -1,6 +1,7 @@
 // Add any additional repositories for your dependencies here
 
 repositories {
+    mavenLocal()
     ivy {
         url 'https://files.vexatos.com/'
         patternLayout {
@@ -11,6 +12,17 @@ repositories {
         }
         metadataSources {
             artifact()
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'glease'
+                url = 'https://maven.glease.net/repos/releases/'
+            }
+        }
+        filter {
+            includeGroup('net.glease')
         }
     }
 }

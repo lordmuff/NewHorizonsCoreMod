@@ -5,7 +5,6 @@ import static gregtech.api.enums.Mods.EnderStorage;
 import static gregtech.api.enums.Mods.ExtraUtilities;
 import static gregtech.api.enums.Mods.GregTech;
 import static gregtech.api.enums.Mods.IndustrialCraft2;
-import static gregtech.api.enums.Mods.NewHorizonsCoreMod;
 import static gregtech.api.enums.Mods.ProjectRedIntegration;
 import static gregtech.api.enums.Mods.RandomThings;
 import static gregtech.api.enums.Mods.RemoteIO;
@@ -13,8 +12,8 @@ import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.enums.Mods.TinkerConstruct;
 import static gregtech.api.enums.Mods.WirelessRedstoneCBELogic;
 import static gregtech.api.recipe.RecipeMaps.assemblerRecipes;
-import static gregtech.api.util.GT_ModHandler.getModItem;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static gregtech.api.util.GTModHandler.getModItem;
+import static gregtech.api.util.GTRecipeBuilder.SECONDS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,12 +21,13 @@ import java.util.List;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import com.dreammaster.gthandler.CustomItemList;
+import com.dreammaster.item.NHItemList;
 
-import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.GTValues;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_OreDictUnificator;
+import gregtech.api.util.GTOreDictUnificator;
 
 public class ScriptRemoteIO implements IScriptLoader {
 
@@ -59,7 +59,7 @@ public class ScriptRemoteIO implements IScriptLoader {
                 ItemList.Sensor_EV.get(1L),
                 ItemList.Automation_Regulator_IV.get(1L),
                 "circuitElite",
-                GT_OreDictUnificator.get(OrePrefixes.wireGt02, Materials.BlackSteel, 1L),
+                GTOreDictUnificator.get(OrePrefixes.wireGt02, Materials.BlackSteel, 1L),
                 "circuitElite",
                 ItemList.Automation_Regulator_IV.get(1L),
                 ItemList.Emitter_EV.get(1L),
@@ -159,78 +159,76 @@ public class ScriptRemoteIO implements IScriptLoader {
                 createItemStack(GregTech.ID, "gt.metaitem.01", 1, 32518, "{GT.ItemCharge:100000L}", missing),
                 "itemCasingAluminium");
 
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
                         getModItem(WirelessRedstoneCBELogic.ID, "wirelessLogic", 1, 0, missing),
                         getModItem(WirelessRedstoneCBELogic.ID, "wirelessLogic", 1, 1, missing))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.wireless_transmitter", 1, 0, missing))
                 .fluidInputs(FluidRegistry.getFluidStack("molten.redstone", 1000)).duration(30 * SECONDS).eut(480)
                 .addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
                         getModItem(TinkerConstruct.ID, "blankPattern", 1, 1, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.plate, Materials.TungstenSteel, 1L))
+                        GTOreDictUnificator.get(OrePrefixes.plate, Materials.TungstenSteel, 1L))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.blank_plate", 1, 0, missing))
                 .fluidInputs(FluidRegistry.getFluidStack("molten.redstone", 144)).duration(10 * SECONDS).eut(480)
                 .addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        GT_OreDictUnificator.get(OrePrefixes.circuit, Materials.EV, 2),
-                        GT_OreDictUnificator.get(OrePrefixes.circuit, Materials.IV, 2))
+                        GTOreDictUnificator.get(OrePrefixes.circuit, Materials.EV, 2),
+                        GTOreDictUnificator.get(OrePrefixes.circuit, Materials.IV, 2))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.location", 1, 0, missing))
                 .fluidInputs(FluidRegistry.getFluidStack("ender", 1000)).duration(30 * SECONDS).eut(480)
                 .addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
+                        NHItemList.BlankPlatedChip.getIS(1),
                         getModItem(EnderStorage.ID, "enderChest", 1, 0, missing))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.transfer", 1, 0, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
+                        NHItemList.BlankPlatedChip.getIS(1),
                         getModItem(EnderStorage.ID, "enderChest", 1, 4096, missing))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.transfer", 1, 1, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
-                .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockJar", 2, 0, missing))
+        GTValues.RA.stdBuilder()
+                .itemInputs(NHItemList.BlankPlatedChip.getIS(1), getModItem(Thaumcraft.ID, "blockJar", 2, 0, missing))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.transfer", 1, 2, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.cableGt01, Materials.BlackSteel, 2L))
+                        NHItemList.BlankPlatedChip.getIS(1),
+                        GTOreDictUnificator.get(OrePrefixes.cableGt01, Materials.BlackSteel, 2L))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.transfer", 1, 10, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
+                        NHItemList.BlankPlatedChip.getIS(1),
                         getModItem(ExtraUtilities.ID, "extractor_base", 2, 12, missing))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.transfer", 1, 12, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
+                        NHItemList.BlankPlatedChip.getIS(1),
                         getModItem(AppliedEnergistics2.ID, "tile.BlockController", 1, 0, missing))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.transfer", 1, 20, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.wireGt02, Materials.RedAlloy, 2L))
+                        NHItemList.BlankPlatedChip.getIS(1),
+                        GTOreDictUnificator.get(OrePrefixes.wireGt02, Materials.RedAlloy, 2L))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.transfer", 1, 21, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Enderium, 4L))
+                        NHItemList.BlankPlatedChip.getIS(1),
+                        GTOreDictUnificator.get(OrePrefixes.plate, Materials.Enderium, 4L))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.upgrade", 1, 0, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
-        GT_Values.RA.stdBuilder()
+        GTValues.RA.stdBuilder()
                 .itemInputs(
-                        getModItem(NewHorizonsCoreMod.ID, "item.BlankPlatedChip", 1, 0, missing),
+                        NHItemList.BlankPlatedChip.getIS(1),
                         getModItem(RemoteIO.ID, "item.wireless_transmitter", 1, 0, missing))
                 .itemOutputs(getModItem(RemoteIO.ID, "item.chip.upgrade", 1, 1, missing)).duration(10 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);

@@ -7,7 +7,7 @@ import static gregtech.api.enums.Mods.MalisisDoors;
 import static gregtech.api.enums.Mods.Minecraft;
 import static gregtech.api.enums.Mods.Railcraft;
 import static gregtech.api.enums.Mods.RandomThings;
-import static gregtech.api.util.GT_ModHandler.getModItem;
+import static gregtech.api.util.GTModHandler.getModItem;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +20,7 @@ import forestry.api.recipes.RecipeManagers;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_OreDictUnificator;
+import gregtech.api.util.GTOreDictUnificator;
 
 public class ScriptExtraTrees implements IScriptLoader {
 
@@ -68,9 +68,9 @@ public class ScriptExtraTrees implements IScriptLoader {
                 getModItem(ExtraTrees.ID, "misc", 1, 3, missing));
         addShapedRecipe(
                 getModItem(ExtraTrees.ID, "machine", 1, 1, missing),
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.WoodSealed, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.WoodSealed, 1L),
                 "plankWood",
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.WoodSealed, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.WoodSealed, 1L),
                 getModItem(Forestry.ID, "factory2", 1, 2, missing),
                 getModItem(Forestry.ID, "sturdyMachine", 1, 0, missing),
                 getModItem(Forestry.ID, "factory2", 1, 2, missing),
@@ -79,9 +79,9 @@ public class ScriptExtraTrees implements IScriptLoader {
                 getModItem(ExtraTrees.ID, "misc", 1, 3, missing));
         addShapedRecipe(
                 getModItem(ExtraTrees.ID, "machine", 1, 2, missing),
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.WoodSealed, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.WoodSealed, 1L),
                 "slabWood",
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.WoodSealed, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.WoodSealed, 1L),
                 getModItem(Forestry.ID, "factory2", 1, 2, missing),
                 getModItem(Forestry.ID, "sturdyMachine", 1, 0, missing),
                 getModItem(Forestry.ID, "factory2", 1, 2, missing),
@@ -4082,23 +4082,23 @@ public class ScriptExtraTrees implements IScriptLoader {
                 "def",
                 "ghi",
                 'a',
-                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
+                GTOreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
                 'b',
                 "itemCasingGold",
                 'c',
-                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
+                GTOreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
                 'd',
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Diamond, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.Diamond, 1L),
                 'e',
                 "circuitAdvanced",
                 'f',
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Emerald, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.Emerald, 1L),
                 'g',
-                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
+                GTOreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
                 'h',
                 "itemCasingGold",
                 'i',
-                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L));
+                GTOreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L));
         RecipeManagers.carpenterManager.addRecipe(
                 60,
                 FluidRegistry.getFluidStack("molten.redstone", 1440),
@@ -4108,23 +4108,23 @@ public class ScriptExtraTrees implements IScriptLoader {
                 "def",
                 "ghi",
                 'a',
-                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
+                GTOreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
                 'b',
                 "itemCasingGold",
                 'c',
-                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
+                GTOreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
                 'd',
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Emerald, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.Emerald, 1L),
                 'e',
                 "circuitAdvanced",
                 'f',
-                GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Diamond, 1L),
+                GTOreDictUnificator.get(OrePrefixes.plate, Materials.Diamond, 1L),
                 'g',
-                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
+                GTOreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L),
                 'h',
                 "itemCasingGold",
                 'i',
-                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L));
+                GTOreDictUnificator.get(OrePrefixes.screw, Materials.Diamond, 1L));
 
     }
 
@@ -7476,5 +7476,27 @@ public class ScriptExtraTrees implements IScriptLoader {
                 "stickWood",
                 getModItem(Minecraft.ID, "planks", 1, 5, missing),
                 "stickWood");
+        addShapedRecipe(
+                createItemStack(ExtraTrees.ID, "food", 1, 23, "{meta:23}", missing),
+                "dustSugar",
+                getModItem(Minecraft.ID, "sand", 1, 1, missing),
+                "dustSugar",
+                getModItem(Minecraft.ID, "sand", 1, 1, missing),
+                "cropPear",
+                getModItem(Minecraft.ID, "sand", 1, 1, missing),
+                "dustSugar",
+                getModItem(Minecraft.ID, "sand", 1, 1, missing),
+                "dustSugar");
+        addShapedRecipe(
+                createItemStack(ExtraTrees.ID, "food", 1, 40, "{meta:40}", missing),
+                "dustLazurite",
+                "gemChippedOlivine",
+                "dustLapis",
+                "dustSugar",
+                getModItem(Forestry.ID, "fruits", 1, 6, missing),
+                "gemChippedOlivine",
+                "dustSodalite",
+                "dustSugar",
+                "dustLazurite");
     }
 }

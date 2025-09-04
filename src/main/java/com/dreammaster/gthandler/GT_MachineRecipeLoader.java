@@ -32,10 +32,14 @@ import com.dreammaster.gthandler.recipes.LaserEngraverRecipes;
 import com.dreammaster.gthandler.recipes.LatheRecipes;
 import com.dreammaster.gthandler.recipes.MaceratorRecipes;
 import com.dreammaster.gthandler.recipes.MixerRecipes;
+import com.dreammaster.gthandler.recipes.NeutroniumCompressorRecipes;
+import com.dreammaster.gthandler.recipes.PolarizerRecipes;
 import com.dreammaster.gthandler.recipes.RecipeRemoval;
 import com.dreammaster.gthandler.recipes.SifterRecipes;
+import com.dreammaster.gthandler.recipes.SolarFactoryRecipes;
 import com.dreammaster.gthandler.recipes.SpaceAssemblerRecipes;
 import com.dreammaster.gthandler.recipes.VacuumFreezerRecipes;
+import com.dreammaster.gthandler.recipes.VacuumFurnaceRecipes;
 import com.dreammaster.gthandler.recipes.WiremillRecipes;
 
 public class GT_MachineRecipeLoader implements Runnable {
@@ -75,11 +79,15 @@ public class GT_MachineRecipeLoader implements Runnable {
         new LatheRecipes().run();
         new MaceratorRecipes().run();
         new MixerRecipes().run();
+        new NeutroniumCompressorRecipes().run();
         new SifterRecipes().run();
+        new SolarFactoryRecipes().run();
         new VacuumFreezerRecipes().run();
         new WiremillRecipes().run();
         new CrackingRecipes().run();
         new SpaceAssemblerRecipes().run();
+        new VacuumFurnaceRecipes().run();
+        new PolarizerRecipes().run();
     }
 
 }

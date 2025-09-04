@@ -5,23 +5,21 @@ import static gregtech.api.enums.Mods.Minecraft;
 import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.enums.Mods.ThaumicTinkerer;
 import static gregtech.api.recipe.RecipeMaps.cutterRecipes;
-import static gregtech.api.util.GT_ModHandler.getModItem;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static gregtech.api.util.GTModHandler.getModItem;
+import static gregtech.api.util.GTRecipeBuilder.SECONDS;
 
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import com.dreammaster.thaumcraft.TCHelper;
 
-import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.GTValues;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Mods;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_OreDictUnificator;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -58,15 +56,15 @@ public class ScriptGadomancy implements IScriptLoader {
                 getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing),
                 getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing));
 
-        GT_Values.RA.stdBuilder().itemInputs(getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing))
+        GTValues.RA.stdBuilder().itemInputs(getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing))
                 .itemOutputs(getModItem(Thaumcraft.ID, "blockCosmeticSlabStone", 4, 1, missing))
                 .fluidInputs(FluidRegistry.getFluidStack("water", 32)).duration(20 * SECONDS).eut(30)
                 .addTo(cutterRecipes);
-        GT_Values.RA.stdBuilder().itemInputs(getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing))
+        GTValues.RA.stdBuilder().itemInputs(getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing))
                 .itemOutputs(getModItem(Thaumcraft.ID, "blockCosmeticSlabStone", 4, 1, missing))
                 .fluidInputs(FluidRegistry.getFluidStack("ic2distilledwater", 20)).duration(20 * SECONDS).eut(30)
                 .addTo(cutterRecipes);
-        GT_Values.RA.stdBuilder().itemInputs(getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing))
+        GTValues.RA.stdBuilder().itemInputs(getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing))
                 .itemOutputs(getModItem(Thaumcraft.ID, "blockCosmeticSlabStone", 4, 1, missing))
                 .fluidInputs(FluidRegistry.getFluidStack("lubricant", 8)).duration(10 * SECONDS).eut(30)
                 .addTo(cutterRecipes);
@@ -100,7 +98,7 @@ public class ScriptGadomancy implements IScriptLoader {
         TCHelper.removeArcaneRecipe(getModItem(Gadomancy.ID, "BlockAuraPylon", 1, 1, missing));
         TCHelper.removeArcaneRecipe(getModItem(Gadomancy.ID, "BlockKnowledgeBook", 1, 0, missing));
         TCHelper.removeArcaneRecipe(getModItem(Gadomancy.ID, "BlockEssentiaCompressor", 3, 0, missing));
-        ThaumcraftApi.addInfusionCraftingRecipe(
+        TCHelper.addInfusionCraftingRecipe(
                 "GADOMANCY.GOLEMSILVERWOOD",
                 getModItem(Gadomancy.ID, "itemSilverwoodGolemPlacer", 1, 8, missing),
                 8,
@@ -108,16 +106,16 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("praecantatio"), 32).add(Aspect.getAspect("sensus"), 16)
                         .add(Aspect.getAspect("cognitio"), 8).add(Aspect.getAspect("ordo"), 32),
                 getModItem(Thaumcraft.ID, "ItemGolemPlacer", 1, 1, missing),
-                new ItemStack[] { getModItem(Thaumcraft.ID, "ItemZombieBrain", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockMagicalLog", 1, 1, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 14, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 3, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 9, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 9, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 3, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 14, missing),
-                        getModItem(Thaumcraft.ID, "blockMagicalLog", 1, 1, missing), });
+                getModItem(Thaumcraft.ID, "ItemZombieBrain", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "blockMagicalLog", 1, 1, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 14, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 3, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 9, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 9, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 3, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 14, missing),
+                getModItem(Thaumcraft.ID, "blockMagicalLog", 1, 1, missing));
         TCHelper.setResearchAspects(
                 "GADOMANCY.GOLEMSILVERWOOD",
                 new AspectList().add(Aspect.getAspect("cognitio"), 21).add(Aspect.getAspect("motus"), 18)
@@ -125,7 +123,7 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("ordo"), 9).add(Aspect.getAspect("corpus"), 6)
                         .add(Aspect.getAspect("permutatio"), 3));
         TCHelper.setResearchComplexity("GADOMANCY.GOLEMSILVERWOOD", 3);
-        ThaumcraftApi.addInfusionCraftingRecipe(
+        TCHelper.addInfusionCraftingRecipe(
                 "GADOMANCY.GOLEMCOREBREAK",
                 getModItem(Gadomancy.ID, "ItemGolemCoreBreak", 1, 0, missing),
                 6,
@@ -133,22 +131,22 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("machina"), 24).add(Aspect.getAspect("praecantatio"), 8)
                         .add(Aspect.getAspect("perfodio"), 8),
                 getModItem(Thaumcraft.ID, "ItemGolemCore", 1, 3, missing),
-                new ItemStack[] { getModItem(Thaumcraft.ID, "ItemPickaxeElemental", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 1, missing),
-                        getModItem(Thaumcraft.ID, "ItemAxeElemental", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 2, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 3, missing),
-                        getModItem(Thaumcraft.ID, "ItemShovelElemental", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 4, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing), });
+                getModItem(Thaumcraft.ID, "ItemPickaxeElemental", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 1, missing),
+                getModItem(Thaumcraft.ID, "ItemAxeElemental", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 2, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 3, missing),
+                getModItem(Thaumcraft.ID, "ItemShovelElemental", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 4, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing));
         TCHelper.setResearchAspects(
                 "GADOMANCY.GOLEMCOREBREAK",
                 new AspectList().add(Aspect.getAspect("instrumentum"), 15).add(Aspect.getAspect("perditio"), 12)
                         .add(Aspect.getAspect("machina"), 9).add(Aspect.getAspect("praecantatio"), 6)
                         .add(Aspect.getAspect("perfodio"), 3));
         TCHelper.setResearchComplexity("GADOMANCY.GOLEMCOREBREAK", 3);
-        ThaumcraftApi.addInfusionCraftingRecipe(
+        TCHelper.addInfusionCraftingRecipe(
                 "GADOMANCY.GOLEMCOREBODYGUARD",
                 getModItem(Gadomancy.ID, "ItemGolemCoreBreak", 1, 1, missing),
                 9,
@@ -156,12 +154,14 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("telum"), 16).add(Aspect.getAspect("tutamen"), 24)
                         .add(Aspect.getAspect("ordo"), 8).add(Aspect.getAspect("auram"), 8),
                 getModItem(Thaumcraft.ID, "ItemGolemCore", 1, 4, missing),
-                new ItemStack[] { getModItem(Thaumcraft.ID, "ItemSwordElemental", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "ItemHelmetThaumium", 1, 0, missing), ItemList.QuantumEye.get(1L),
-                        getModItem(Thaumcraft.ID, "ItemChestplateThaumium", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "BootsTraveller", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "ItemLeggingsThaumium", 1, 0, missing), ItemList.QuantumEye.get(1L),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing), });
+                getModItem(Thaumcraft.ID, "ItemSwordElemental", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "ItemHelmetThaumium", 1, 0, missing),
+                ItemList.QuantumEye.get(1L),
+                getModItem(Thaumcraft.ID, "ItemChestplateThaumium", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "BootsTraveller", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "ItemLeggingsThaumium", 1, 0, missing),
+                ItemList.QuantumEye.get(1L),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing));
         TCHelper.setResearchAspects(
                 "GADOMANCY.GOLEMCOREBODYGUARD",
                 new AspectList().add(Aspect.getAspect("instrumentum"), 18).add(Aspect.getAspect("ordo"), 15)
@@ -207,7 +207,7 @@ public class ScriptGadomancy implements IScriptLoader {
                 getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing),
                 new AspectList().add(Aspect.getAspect("permutatio"), 8).add(Aspect.getAspect("perditio"), 12)
                         .add(Aspect.getAspect("alienis"), 12).add(Aspect.getAspect("terra"), 8));
-        ThaumcraftApi.addInfusionCraftingRecipe(
+        TCHelper.addInfusionCraftingRecipe(
                 "GADOMANCY.NODE_MANIPULATOR",
                 getModItem(Gadomancy.ID, "BlockNodeManipulator", 1, 5, missing),
                 10,
@@ -216,19 +216,19 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("tenebrae"), 16).add(Aspect.getAspect("permutatio"), 24)
                         .add(Aspect.getAspect("motus"), 8),
                 getModItem(Thaumcraft.ID, "blockStoneDevice", 1, 5, missing),
-                new ItemStack[] { GT_OreDictUnificator.get(OrePrefixes.plateDense, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
-                        getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing),
-                        getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 3, missing),
-                        getModItem(Thaumcraft.ID, "blockStoneDevice", 1, 10, missing),
-                        getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 3, missing),
-                        getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 1, missing), });
-        ThaumcraftApi.addInfusionCraftingRecipe(
+                OrePrefixes.plateDense.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
+                getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing),
+                getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 3, missing),
+                getModItem(Thaumcraft.ID, "blockStoneDevice", 1, 10, missing),
+                getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 3, missing),
+                getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 1, missing));
+        TCHelper.addInfusionCraftingRecipe(
                 "GADOMANCY.NODE_MANIPULATOR",
                 getModItem(Gadomancy.ID, "BlockStoneMachine", 1, 0, missing),
                 10,
@@ -237,16 +237,16 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("tenebrae"), 32).add(Aspect.getAspect("nebrisum"), 8)
                         .add(Aspect.getAspect("lucrum"), 16),
                 getModItem(Thaumcraft.ID, "blockStoneDevice", 1, 8, missing),
-                new ItemStack[] { getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.ring, Materials.Void, 1L),
-                        GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
-                        getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Void, 1L),
-                        GT_OreDictUnificator.get(OrePrefixes.ring, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing), });
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
+                OrePrefixes.ring.get(Materials.Void),
+                OrePrefixes.plate.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
+                getModItem(Thaumcraft.ID, "ItemResource", 1, 15, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing),
+                OrePrefixes.plate.get(Materials.Void),
+                OrePrefixes.ring.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 6, missing));
         TCHelper.setResearchAspects(
                 "GADOMANCY.NODE_MANIPULATOR",
                 new AspectList().add(Aspect.getAspect("nebrisum"), 27).add(Aspect.getAspect("alienis"), 24)
@@ -255,7 +255,7 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("machina"), 9).add(Aspect.getAspect("tenebrae"), 6)
                         .add(Aspect.getAspect("permutatio"), 3));
         TCHelper.setResearchComplexity("GADOMANCY.NODE_MANIPULATOR", 4);
-        ThaumcraftApi.addInfusionCraftingRecipe(
+        TCHelper.addInfusionCraftingRecipe(
                 "GADOMANCY.INFUSIONCLAW",
                 getModItem(Gadomancy.ID, "BlockInfusionClaw", 1, 0, missing),
                 15,
@@ -264,18 +264,18 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("praecantatio"), 32).add(Aspect.getAspect("motus"), 16)
                         .add(Aspect.getAspect("cognitio"), 8),
                 getModItem(Thaumcraft.ID, "blockStoneDevice", 1, 5, missing),
-                new ItemStack[] { getModItem(Thaumcraft.ID, "ItemGolemCore", 1, 8, missing),
-                        getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.stick, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "FocusPrimal", 1, 0, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.stick, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing),
-                        getModItem(Thaumcraft.ID, "ItemZombieBrain", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.stick, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "FocusPrimal", 1, 0, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.stick, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing), });
+                getModItem(Thaumcraft.ID, "ItemGolemCore", 1, 8, missing),
+                getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing),
+                OrePrefixes.stick.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "FocusPrimal", 1, 0, missing),
+                OrePrefixes.stick.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing),
+                getModItem(Thaumcraft.ID, "ItemZombieBrain", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing),
+                OrePrefixes.stick.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "FocusPrimal", 1, 0, missing),
+                OrePrefixes.stick.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 6, missing));
         TCHelper.setResearchAspects(
                 "GADOMANCY.INFUSIONCLAW",
                 new AspectList().add(Aspect.getAspect("alienis"), 21).add(Aspect.getAspect("machina"), 18)
@@ -437,7 +437,7 @@ public class ScriptGadomancy implements IScriptLoader {
                 getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 15, missing),
                 'i',
                 getModItem(Thaumcraft.ID, "blockCosmeticSolid", 1, 11, missing));
-        ThaumcraftApi.addInfusionCraftingRecipe(
+        TCHelper.addInfusionCraftingRecipe(
                 "GADOMANCY.E_PORTAL_CREATOR",
                 getModItem(Gadomancy.ID, "BlockStoneMachine", 1, 3, missing),
                 10,
@@ -446,16 +446,16 @@ public class ScriptGadomancy implements IScriptLoader {
                         .add(Aspect.getAspect("vacuos"), 32).add(Aspect.getAspect("auram"), 16)
                         .add(Aspect.getAspect("praecantatio"), 8),
                 getModItem(Thaumcraft.ID, "blockStoneDevice", 1, 8, missing),
-                new ItemStack[] { getModItem(Thaumcraft.ID, "ItemEldritchObject", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.ring, Materials.Void, 1L),
-                        GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing),
-                        getModItem(Thaumcraft.ID, "ItemEldritchObject", 1, 0, missing),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing),
-                        GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Void, 1L),
-                        GT_OreDictUnificator.get(OrePrefixes.ring, Materials.Void, 1L),
-                        getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing), });
+                getModItem(Thaumcraft.ID, "ItemEldritchObject", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing),
+                OrePrefixes.ring.get(Materials.Void),
+                OrePrefixes.plate.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing),
+                getModItem(Thaumcraft.ID, "ItemEldritchObject", 1, 0, missing),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing),
+                OrePrefixes.plate.get(Materials.Void),
+                OrePrefixes.ring.get(Materials.Void),
+                getModItem(Thaumcraft.ID, "blockCrystal", 1, 5, missing));
         TCHelper.setResearchAspects(
                 "GADOMANCY.E_PORTAL_CREATOR",
                 new AspectList().add(Aspect.getAspect("tenebrae"), 21).add(Aspect.getAspect("auram"), 18)

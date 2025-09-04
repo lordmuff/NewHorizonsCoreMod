@@ -14,17 +14,17 @@ import java.util.stream.Stream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
-import com.github.bartimaeusnek.crossmod.galacticgreg.VoidMinerUtility;
 import com.google.common.collect.Maps;
 
+import bartworks.system.material.Werkstoff;
+import bwcrossmod.galacticgreg.VoidMinerUtility;
 import cpw.mods.fml.common.registry.GameRegistry;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.interfaces.ISubTagContainer;
 import gtPlusPlus.core.material.Material;
-import gtPlusPlus.everglades.gen.gt.WorldGen_GT_Ore_Layer;
-import gtPlusPlus.everglades.gen.gt.WorldGen_Ores;
+import toxiceverglades.gen.WorldGenEvergladesOreLayer;
+import toxiceverglades.gen.WorldGenEvergladesOres;
 
 public class VoidMinerLoader {
 
@@ -71,7 +71,7 @@ public class VoidMinerLoader {
 
         // Map of GT++ material name to GT++ Material.
         Map<String, Material> GTPPMaterials = new HashMap<>();
-        for (WorldGen_GT_Ore_Layer t : WorldGen_Ores.validOreveins.values()) {
+        for (WorldGenEvergladesOreLayer t : WorldGenEvergladesOres.validOreveins.values()) {
             GTPPMaterials.put(t.mPrimary.getLocalizedName(), t.mPrimary);
             GTPPMaterials.put(t.mSecondary.getLocalizedName(), t.mSecondary);
             GTPPMaterials.put(t.mBetween.getLocalizedName(), t.mBetween);

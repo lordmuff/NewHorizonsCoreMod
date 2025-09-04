@@ -1,11 +1,12 @@
 package com.dreammaster.scripts;
 
 import static gregtech.api.enums.Mods.ForgeMicroblocks;
-import static gregtech.api.enums.Mods.NewHorizonsCoreMod;
-import static gregtech.api.util.GT_ModHandler.getModItem;
+import static gregtech.api.util.GTModHandler.getModItem;
 
 import java.util.Collections;
 import java.util.List;
+
+import com.dreammaster.item.NHItemList;
 
 public class ScriptForgeMultipart implements IScriptLoader {
 
@@ -27,7 +28,7 @@ public class ScriptForgeMultipart implements IScriptLoader {
                 "stickStone",
                 "stickStone",
                 "stickWood",
-                getModItem(NewHorizonsCoreMod.ID, "item.SawBladeStone", 1),
+                NHItemList.SawBladeStone.getIS(1),
                 "stickStone",
                 null,
                 null,
@@ -51,7 +52,7 @@ public class ScriptForgeMultipart implements IScriptLoader {
                 "stickSteel",
                 "stickSteel",
                 "stickWood",
-                getModItem(NewHorizonsCoreMod.ID, "item.SawBladeDiamond", 1),
+                NHItemList.SawBladeDiamond.getIS(1),
                 "stickSteel",
                 null,
                 null,
